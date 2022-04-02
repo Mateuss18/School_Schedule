@@ -7,7 +7,7 @@ import 'package:school_schedule/core/app_colors.dart';
 import 'package:school_schedule/core/app_images.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
 
-import '../core/app_texts.dart';
+import '../../../core/app_texts.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -45,9 +45,9 @@ class _LoginPageState extends State<LoginPage> {
             width: widthValue,
             child: Column(
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 49),
-                  child: const Text(
+                const Padding(
+                  padding: EdgeInsets.only(top: 49),
+                  child: Text(
                     'Tenha controle das suas \ndisiplinas, notas, faltas e \n grade de horários na\n palma de sua mão',
                     style: TextStyle(
                       color: Colors.white,

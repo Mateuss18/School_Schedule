@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:school_schedule/core/app_colors.dart';
-import 'package:school_schedule/pages/login_page.dart';
+import 'package:school_schedule/modules/home/pages/home_page.dart';
+import 'package:school_schedule/modules/login/pages/login_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'School Schedule',
-      home: const LoginPage(),
+      home: const HomePage(),
     );
   }
 }
