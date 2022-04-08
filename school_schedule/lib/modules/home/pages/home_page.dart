@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
                           fit: BoxFit.scaleDown,
                         ),
                         AppColors.corPrimaria,
-                        'notas',
+                        'Notas',
                         Colors.white,
                       ),
                       _buildCircularButtons(
@@ -99,6 +99,7 @@ class _HomePageState extends State<HomePage> {
               ),
               Container(
                 color: AppColors.corLightGray1,
+                margin:  const EdgeInsets.only(top: 29),
                 child: Column(
                   children: [
                     Padding(
@@ -119,8 +120,6 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     ),
-                    cardHorario(),
-                    cardHorario(),
                     cardHorario(),
                     cardHorario(),
                     cardHorario(),
@@ -150,11 +149,11 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.only(right: 10, bottom: 10),
                 child: Row(
                   children: [
                     SvgPicture.asset(AppImages.iconHorarioAzulBrancoSVG),
-                    const SizedBox(width: 20),
+                    const SizedBox(width: 8),
                     const Text(
                       'Horarios',
                       style: TextStyle(fontSize: 15),
@@ -167,8 +166,9 @@ class _HomePageState extends State<HomePage> {
                   borderRadius: BorderRadius.all(Radius.circular(6)),
                   color: AppColors.corPrimaria,
                 ),
-                width: 300,
+                width: 320,
                 height: 60,
+                margin:  const EdgeInsets.only(bottom: 10),
                 child: const Center(
                   child: Text(
                     'Não há aulas hoje',
