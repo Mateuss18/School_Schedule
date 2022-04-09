@@ -6,6 +6,7 @@ import 'package:school_schedule/core/app_colors.dart';
 import 'package:school_schedule/core/app_images.dart';
 
 import '../../core/constants.dart';
+import '../login/firebase_service.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({Key? key}) : super(key: key);
@@ -45,33 +46,9 @@ class _WelcomePageState extends State<WelcomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset("assets/images/main-img.png"),
-              RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(children: <TextSpan>[
-                    TextSpan(
-                        text: Constants.textIntro,
-                        style: TextStyle(
-                          color: AppColors.corDarkGray1,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 30.0,
-                        )),
-                    TextSpan(
-                        text: Constants.textIntroDesc1,
-                        style: TextStyle(
-                            color: AppColors.corRed,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30.0)),
-                    TextSpan(
-                        text: Constants.textIntroDesc2,
-                        style: TextStyle(
-                            color: AppColors.corDarkGray1,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 30.0)),
-                  ])),
               SizedBox(height: heigth * 0.01),
               Text(
-                "Constants.textSmallSignUp",
+                "Login",
                 style: TextStyle(color: AppColors.corDarkGray1),
               ),
               SizedBox(height: heigth * 0.1),
@@ -84,7 +61,7 @@ class _WelcomePageState extends State<WelcomePage> {
                         : Navigator.pushReplacementNamed(
                             context, Constants.homeNavigate);
                   },
-                  child: Text("Constants.textStart"),
+                  child: Text("Start"),
                   style: ButtonStyle(
                       foregroundColor: MaterialStateProperty.all<Color>(
                           AppColors.corPrimaria),
@@ -97,14 +74,22 @@ class _WelcomePageState extends State<WelcomePage> {
               SizedBox(
                 width: width * 0.8,
                 child: OutlinedButton(
-                  onPressed: () {},
-                  child: Text(
-                    "Constants.textSignIn",
-                    style: TextStyle(color: AppColors.corDarkGray1),
-                  ),
+                  onPressed: () async {
+                    FirebaseService service = FirebaseService();
+                    try {
+                      await service.signOutFromGoogle();
+                    } catch (e) {
+                      if (e is FirebaseAuthException) {
+                        print(e.message);
+                      }
+                    }
+                  },
+                  child: Text("Logout"),
                   style: ButtonStyle(
+                      foregroundColor: MaterialStateProperty.all<Color>(
+                          AppColors.corPrimaria),
                       backgroundColor: MaterialStateProperty.all<Color>(
-                          AppColors.corLightGray1),
+                          AppColors.corDarkGray1),
                       side: MaterialStateProperty.all<BorderSide>(
                           BorderSide.none)),
                 ),

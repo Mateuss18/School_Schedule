@@ -1,14 +1,10 @@
-import 'dart:math';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:school_schedule/core/app_colors.dart';
 import 'package:school_schedule/core/app_images.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
 
-import '../../../core/app_texts.dart';
 import '../../../core/constants.dart';
 import '../firebase_service.dart';
 
@@ -94,6 +90,6 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
           )
-        : CircularProgressIndicator();
+        : const CircularProgressIndicator();
   }
 }
