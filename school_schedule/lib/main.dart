@@ -23,7 +23,6 @@ class MyApp extends StatelessWidget {
       title: 'School Schedule',
       initialRoute: '/',
       routes: Navigate.routes,
-      home: const LoginPage(),
     );
   }
 }
