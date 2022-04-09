@@ -6,8 +6,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:school_schedule/core/app_colors.dart';
+import 'package:school_schedule/modules/ausencias/pages/ausencia_page.dart';
 
 import '../../../core/app_images.dart';
+import '../../agenda/page/agenda_page.dart';
+import '../../disciplinas/pages/disciplina_page.dart';
+import '../../horarios/pages/horarios_page.dart';
+import '../../notas/pages/notas_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -38,35 +43,45 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              Column(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Column(
                 children: [
                   _buildCircularButtons(
-                    100,
-                    SvgPicture.asset(AppImages.disciplinasBrancoSVG,
-                        height: 90, width: 90, fit: BoxFit.scaleDown),
-                    AppColors.corPrimaria,
-                    'Disciplinas',
-                    Colors.white,
-                  ),
+                      100,
+                      SvgPicture.asset(AppImages.disciplinasBrancoSVG,
+                          height: 90, width: 90, fit: BoxFit.scaleDown),
+                      AppColors.corPrimaria,
+                      'Disciplinas',
+                      Colors.white, (() {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const DisciplinasPage()),
+                    );
+                  })),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       _buildCircularButtons(
-                        100,
-                        SvgPicture.asset(
-                          AppImages.notasBrancoSVG,
-                          height: 90,
-                          width: 90,
-                          fit: BoxFit.scaleDown,
-                        ),
-                        AppColors.corPrimaria,
-                        'Notas',
-                        Colors.white,
-                      ),
+                          100,
+                          SvgPicture.asset(
+                            AppImages.notasBrancoSVG,
+                            height: 90,
+                            width: 90,
+                            fit: BoxFit.scaleDown,
+                          ),
+                          AppColors.corPrimaria,
+                          'Notas',
+                          Colors.white, (() {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const NotasPage()),
+                        );
+                      })),
                       _buildCircularButtons(
                         15,
                         SvgPicture.asset(AppImages.horariosAzulSVG,
@@ -77,6 +92,13 @@ class _HomePageState extends State<HomePage> {
                         Colors.white,
                         'Horarios',
                         AppColors.corPrimaria,
+                        (() {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const HorariosPage()),
+                          );
+                        }),
                       ),
                       _buildCircularButtons(
                         100,
@@ -85,50 +107,61 @@ class _HomePageState extends State<HomePage> {
                         AppColors.corPrimaria,
                         'Agenda',
                         Colors.white,
+                        (() {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const AgendaPage()),
+                          );
+                        }),
                       ),
                     ],
                   ),
                   _buildCircularButtons(
-                    100,
-                    SvgPicture.asset(AppImages.ausenciasBrancoAzulSVG,
-                        height: 90, width: 90, fit: BoxFit.scaleDown),
-                    AppColors.corPrimaria,
-                    'Ausencias',
-                    Colors.white,
-                  ),
+                      100,
+                      SvgPicture.asset(AppImages.ausenciasBrancoAzulSVG,
+                          height: 90, width: 90, fit: BoxFit.scaleDown),
+                      AppColors.corPrimaria,
+                      'Ausencias',
+                      Colors.white, (() {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const AusenciaPage()),
+                    );
+                  }))
                 ],
               ),
-              Container(
-                color: AppColors.corLightGray1,
-                margin: const EdgeInsets.only(top: 29),
-                child: Column(
-                  children: [
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(right: 20, left: 20, top: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Atividades de hoje:',
-                            style: TextStyle(fontSize: 18),
-                          ),
-                          Text(
-                            DateFormat('dd/MM/yyyy').format(now).toString(),
-                            style:
-                                const TextStyle(color: AppColors.corDarkGray1),
-                          )
-                        ],
-                      ),
+            ),
+            Container(
+              color: AppColors.corLightGray1,
+              margin: const EdgeInsets.only(top: 30),
+              child: Column(
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(right: 20, left: 20, top: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Atividades de hoje:',
+                          style: TextStyle(fontSize: 18),
+                        ),
+                        Text(
+                          DateFormat('dd/MM/yyyy').format(now).toString(),
+                          style: const TextStyle(color: AppColors.corDarkGray1),
+                        )
+                      ],
                     ),
-                    cardHorario(),
-                    cardHorario(),
-                    cardHorario(),
-                  ],
-                ),
-              )
-            ],
-          ),
+                  ),
+                  cardHorario(),
+                  cardHorario(),
+                  cardHorario(),
+                ],
+              ),
+            )
+          ],
         ),
       ),
     );
@@ -208,11 +241,12 @@ class _HomePageState extends State<HomePage> {
     Color color,
     String label,
     Color? textColor,
+    Function()? onPressed,
   ) {
     return Padding(
       padding: const EdgeInsets.only(top: 12),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         child: Column(
           children: [
             icon,
