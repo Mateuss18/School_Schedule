@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
@@ -99,7 +100,7 @@ class _HomePageState extends State<HomePage> {
               ),
               Container(
                 color: AppColors.corLightGray1,
-                margin:  const EdgeInsets.only(top: 29),
+                margin: const EdgeInsets.only(top: 29),
                 child: Column(
                   children: [
                     Padding(
@@ -168,7 +169,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 width: 320,
                 height: 60,
-                margin:  const EdgeInsets.only(bottom: 10),
+                margin: const EdgeInsets.only(bottom: 10),
                 child: const Center(
                   child: Text(
                     'Não há aulas hoje',

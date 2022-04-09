@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,6 +9,8 @@ import 'package:school_schedule/core/app_images.dart';
 import 'package:social_login_buttons/social_login_buttons.dart';
 
 import '../../../core/app_texts.dart';
+import '../../../core/constants.dart';
+import '../firebase_service.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -17,59 +20,80 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  bool isLoading = false;
   get wght => null;
 
   @override
   Widget build(BuildContext context) {
     double widthValue = MediaQuery.of(context).size.width;
     double heigthValue = MediaQuery.of(context).size.height;
-    return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Container(
-              height: heigthValue * 0.55,
-              width: widthValue,
-              color: Colors.white,
-              child: SvgPicture.asset(
-                AppImages.calendarioSVG,
-                height: 100,
-              )),
-          Container(
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(50), topRight: Radius.circular(50)),
-              color: AppColors.corPrimaria,
-            ),
-            height: heigthValue * 0.40,
-            width: widthValue,
-            child: Column(
+    return !isLoading
+        ? Scaffold(
+            body: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                const Padding(
-                  padding: EdgeInsets.only(top: 49),
-                  child: Text(
-                    'Tenha controle das suas \ndisiplinas, notas, faltas e \n grade de horários na\n palma de sua mão',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 24,
-                    ),
-                    textAlign: TextAlign.center,
+                Container(
+                    height: heigthValue * 0.55,
+                    width: widthValue,
+                    color: Colors.white,
+                    child: SvgPicture.asset(
+                      AppImages.calendarioSVG,
+                      height: 100,
+                    )),
+                Container(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(50),
+                        topRight: Radius.circular(50)),
+                    color: AppColors.corPrimaria,
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 49),
-                  child: SocialLoginButton(
-                    text: 'Entrar com Google',
-                    width: widthValue * 0.8,
-                    buttonType: SocialLoginButtonType.google,
-                    onPressed: () {},
+                  height: heigthValue * 0.40,
+                  width: widthValue,
+                  child: Column(
+                    children: [
+                      const Padding(
+                        padding: EdgeInsets.only(top: 49),
+                        child: Text(
+                          'Tenha controle das suas \ndisiplinas, notas, faltas e \n grade de horários na\n palma de sua mão',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 24,
+                          ),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 49),
+                        child: SocialLoginButton(
+                          text: 'Entrar com Google',
+                          width: widthValue * 0.8,
+                          buttonType: SocialLoginButtonType.google,
+                          onPressed: () async {
+                            setState(() {
+                              isLoading = true;
+                            });
+                            FirebaseService service = FirebaseService();
+                            try {
+                              await service.signInwithGoogle();
+                              Navigator.pushNamedAndRemoveUntil(context,
+                                  Constants.homeNavigate, (route) => false);
+                            } catch (e) {
+                              if (e is FirebaseAuthException) {
+                                print(e.message!);
+                              }
+                            }
+                            setState(() {
+                              isLoading = false;
+                            });
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
-          ),
-        ],
-      ),
-    );
+          )
+        : CircularProgressIndicator();
   }
 }
