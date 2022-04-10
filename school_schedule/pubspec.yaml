@@ -43,6 +43,7 @@ dependencies:
   font_awesome_flutter: ^9.2.0
   google_sign_in: ^5.2.0
   firebase_analytics: ^5.0.11
+  animated_splash_screen: ^1.2.0
 
 
 dev_dependencies:
@@ -77,13 +78,13 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Bold.ttf
+        - asset: assets/fonts/Poppins-Light.ttf
+        - asset: assets/fonts/Poppins-Medium.ttf
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
