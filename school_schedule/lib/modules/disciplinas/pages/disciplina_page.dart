@@ -64,8 +64,14 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
                       'Nome da Disciplina',
                       style: TextStyle(fontSize: 16),
                     ),
-                    Text('Nome do professor'),
-                    Text('Numero de ausencias'),
+                    Text(
+                      'Nome do professor',
+                      style: TextStyle(fontSize: 11),
+                    ),
+                    Text(
+                      'Numero de ausencias',
+                      style: TextStyle(fontSize: 11)
+                    )
                   ],
                 ),
               )

@@ -16,6 +16,7 @@ class AppImages {
       'assets/images/icon_provas_azul_branco.svg';
   static const iconTarefasAzulBrancoSVG =
       'assets/images/icon_tarefas_azul_branco.svg';
+  static const notasCanetaSVG = 'assets/images/notas_caneta.svg';
   static const notasBrancoSVG = 'assets/images/notas_branco.svg';
   static const setaSVG = 'assets/images/seta.svg';
   static const iconUserSVG = 'assets/images/icon_user.svg';

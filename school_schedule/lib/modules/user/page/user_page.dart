@@ -19,7 +19,7 @@ class _UserPageState extends State<UserPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColors.corLightGray1,
         foregroundColor: Colors.black,
         elevation: 0,
       ),
@@ -29,7 +29,7 @@ class _UserPageState extends State<UserPage> {
 
   Widget _buildTile() {
     return Container(
-      color: Colors.white,
+      color: AppColors.corLightGray1,
       child: Column(
         children: [
           Padding(
@@ -51,9 +51,10 @@ class _UserPageState extends State<UserPage> {
                   padding: const EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
+                    // ignore: prefer_const_literals_to_create_immutables
                     children: [
-                      const Text('Nome do Usuario'),
-                      Text('email@gmail.com')
+                      const Text('Nome do usuario', style: TextStyle(fontSize: 18)),
+                      const Text('email@gmail.com', style: TextStyle(fontSize: 14))
                     ],
                   ),
                 )
@@ -116,7 +117,7 @@ class _UserPageState extends State<UserPage> {
                             subTitle,
                             style: const TextStyle(
                               color: Colors.white,
-                              fontSize: 11,
+                              fontSize: 12,
                             ),
                           ),
                         ]),

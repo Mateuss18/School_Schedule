@@ -56,7 +56,7 @@ class _NotasPageState extends State<NotasPage> {
             padding: const EdgeInsets.all(20),
             child: Row(
               children: [
-                SvgPicture.asset(AppImages.notasBrancoSVG),
+                SvgPicture.asset(AppImages.notasCanetaSVG),
                 Padding(
                   padding: const EdgeInsets.only(left: 20),
                   child: Column(
