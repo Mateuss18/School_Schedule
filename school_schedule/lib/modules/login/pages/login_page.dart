@@ -17,79 +17,74 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   bool isLoading = false;
-  get wght => null;
-
   @override
   Widget build(BuildContext context) {
     double widthValue = MediaQuery.of(context).size.width;
     double heigthValue = MediaQuery.of(context).size.height;
-    return !isLoading
-        ? Scaffold(
-            body: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Container(
+              height: heigthValue * 0.55,
+              width: widthValue,
+              color: Colors.white,
+              child: SvgPicture.asset(
+                AppImages.calendarioSVG,
+                height: 100,
+              )),
+          Container(
+            decoration: const BoxDecoration(
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(50), topRight: Radius.circular(50)),
+              color: AppColors.corPrimaria,
+            ),
+            height: heigthValue * 0.40,
+            width: widthValue,
+            child: Column(
               children: [
-                Container(
-                    height: heigthValue * 0.55,
-                    width: widthValue,
-                    color: Colors.white,
-                    child: SvgPicture.asset(
-                      AppImages.calendarioSVG,
-                      height: 100,
-                    )),
-                Container(
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(50),
-                        topRight: Radius.circular(50)),
-                    color: AppColors.corPrimaria,
+                const Padding(
+                  padding: EdgeInsets.only(top: 49),
+                  child: Text(
+                    'Tenha controle das suas \ndisiplinas, notas, faltas e \n grade de horários na\n palma de sua mão',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  height: heigthValue * 0.40,
-                  width: widthValue,
-                  child: Column(
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.only(top: 49),
-                        child: Text(
-                          'Tenha controle das suas \ndisiplinas, notas, faltas e \n grade de horários na\n palma de sua mão',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 24,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 49),
-                        child: SocialLoginButton(
-                          text: 'Entrar com Google',
-                          width: widthValue * 0.8,
-                          buttonType: SocialLoginButtonType.google,
-                          onPressed: () async {
-                            setState(() {
-                              isLoading = true;
-                            });
-                            FirebaseService service = FirebaseService();
-                            try {
-                              await service.signInwithGoogle();
-                              Navigator.pushNamedAndRemoveUntil(context,
-                                  Constants.homeNavigate, (route) => false);
-                            } catch (e) {
-                              if (e is FirebaseAuthException) {
-                                print(e.message!);
-                              }
-                            }
-                            setState(() {
-                              isLoading = false;
-                            });
-                          },
-                        ),
-                      ),
-                    ],
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 49),
+                  child: SocialLoginButton(
+                    text: 'Entrar com Google',
+                    width: widthValue * 0.8,
+                    buttonType: SocialLoginButtonType.google,
+                    onPressed: () async {
+                      setState(() {
+                        isLoading = true;
+                      });
+                      FirebaseService service = FirebaseService();
+                      try {
+                        await service.signInwithGoogle();
+                        Navigator.pushNamedAndRemoveUntil(
+                            context, Constants.homeNavigate, (route) => false);
+                      } catch (e) {
+                        if (e is FirebaseAuthException) {
+                          print(e.message!);
+                        }
+                      }
+                      setState(() {
+                        isLoading = false;
+                      });
+                    },
                   ),
                 ),
               ],
             ),
-          )
-        : const CircularProgressIndicator();
+          ),
+        ],
+      ),
+    );
   }
 }
