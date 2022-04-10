@@ -7,6 +7,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:school_schedule/core/app_colors.dart';
 import 'package:school_schedule/modules/ausencias/pages/ausencia_page.dart';
+import 'package:school_schedule/modules/user/page/user_page.dart';
 
 import '../../../core/app_images.dart';
 import '../../agenda/page/agenda_page.dart';
@@ -27,8 +28,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.white,
         title: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SvgPicture.asset(
@@ -38,7 +41,15 @@ class _HomePageState extends State<HomePage> {
               'Menu',
               style: TextStyle(color: Colors.black),
             ),
-            SvgPicture.asset(AppImages.configuracoesSVG)
+            GestureDetector(
+              child: SvgPicture.asset(AppImages.iconUserSVG),
+              onTap: (() {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const UserPage()),
+                );
+              }),
+            )
           ],
         ),
       ),

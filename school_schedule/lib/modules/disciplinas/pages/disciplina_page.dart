@@ -15,37 +15,42 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: AppColors.corPrimaria,
           title: const Text(
             'Disciplinas',
-            style: TextStyle(color: Colors.black),
+            style: TextStyle(color: Colors.white),
           ),
         ),
         body: Container(
-          color: Color.fromARGB(255, 214, 214, 214),
+          color: Colors.white,
           child: Column(
-            children: [_buildCard(), _buildCard(), _buildCard(), _buildCard()],
+            children: [
+              _buildCard(Colors.blue),
+              _buildCard(Colors.red),
+              _buildCard(Colors.green),
+              _buildCard(Colors.yellow)
+            ],
           ),
         ));
   }
 
-  Widget _buildCard() {
+  Widget _buildCard(Color color) {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.only(top: 15, right: 15, left: 15),
       child: Container(
         height: 95,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(10)),
             gradient: LinearGradient(
               begin: Alignment.center,
               end: Alignment.centerRight,
               colors: [
-                AppColors.corPrimaria,
-                Color.fromARGB(255, 147, 192, 228),
+                color,
+                color.withOpacity(0.5),
               ],
             )),
         child: Padding(
-          padding: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(20),
           child: Row(
             children: [
               SvgPicture.asset(AppImages.disciplinasBrancoSVG),

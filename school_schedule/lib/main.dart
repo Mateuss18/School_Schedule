@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'School Schedule',
-      initialRoute: '/user-page',
+      initialRoute: '/home',
       routes: Navigate.routes,
     );
   }

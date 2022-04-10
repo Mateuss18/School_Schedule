@@ -4,6 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:school_schedule/core/app_colors.dart';
 import 'package:school_schedule/core/app_images.dart';
 
+import '../../../tela_em_desenvolvimento.dart';
+
 class UserPage extends StatefulWidget {
   const UserPage({Key? key}) : super(key: key);
 
@@ -70,50 +72,59 @@ class _UserPageState extends State<UserPage> {
   }
 
   Widget _buildCard(String asset, String title, String? subTitle) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
-      child: Container(
-        decoration: BoxDecoration(
-          color: AppColors.corPrimaria,
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: Row(
-            children: [
-              SvgPicture.asset(
-                asset,
-                color: Colors.white,
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 18,
-                          fontWeight: FontWeight.w500),
-                    ),
-                    const SizedBox(
-                      height: 5,
-                    ),
-                    if (subTitle != null)
-                      Wrap(children: [
-                        Text(
-                          subTitle,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 11,
-                          ),
-                        ),
-                      ]),
-                  ],
+    return GestureDetector(
+      onTap: (() {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => const TelaEmDesenvolvimento()),
+        );
+      }),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+        child: Container(
+          decoration: BoxDecoration(
+            color: AppColors.corPrimaria,
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            child: Row(
+              children: [
+                SvgPicture.asset(
+                  asset,
+                  color: Colors.white,
                 ),
-              )
-            ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      if (subTitle != null)
+                        Wrap(children: [
+                          Text(
+                            subTitle,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 11,
+                            ),
+                          ),
+                        ]),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
