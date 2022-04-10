@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "218529969552",
+    "project_id": "school-schedule-7f15f",
+    "storage_bucket": "school-schedule-7f15f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:218529969552:android:bc0ced6ef357c093a96f15",
+        "android_client_info": {
+          "package_name": "com.example.school_schedule"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "218529969552-htk5ll2lr8928s53246qp7hplhoa6mai.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.school_schedule",
+            "certificate_hash": "2c91b7975d4b759972f3b485482edcc811058817"
+          }
+        },
+        {
+          "client_id": "218529969552-9f1lev57t3ch2c8kgfiq72etp28jj8sf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWXBUlOx7YyHEF_MGOMtoghB1jkweQ3v4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "218529969552-9f1lev57t3ch2c8kgfiq72etp28jj8sf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

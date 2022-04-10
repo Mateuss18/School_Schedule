@@ -16,6 +16,13 @@ class AppImages {
       'assets/images/icon_provas_azul_branco.svg';
   static const iconTarefasAzulBrancoSVG =
       'assets/images/icon_tarefas_azul_branco.svg';
+  static const notasCanetaSVG = 'assets/images/notas_caneta.svg';
   static const notasBrancoSVG = 'assets/images/notas_branco.svg';
   static const setaSVG = 'assets/images/seta.svg';
+  static const iconUserSVG = 'assets/images/icon_user.svg';
+  static const iconUserBigSVG = 'assets/images/icon_user_big.svg';
+  static const calendarioSyncSVG = 'assets/images/calendario_sync.svg';
+  static const emailSVG = 'assets/images/email.svg';
+  static const shieldSVG = 'assets/images/shield.svg';
+  static const aboutSVG = 'assets/images/about.svg';
 }
