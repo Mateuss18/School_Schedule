@@ -1,4 +1,4 @@
-# school_schedule
+# school_schedule_debug_version
 
 A new Flutter project.
 

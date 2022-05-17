@@ -1,19 +1,15 @@
-import 'dart:math';
-import 'dart:ui';
-
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
-import 'package:school_schedule/core/app_colors.dart';
-import 'package:school_schedule/modules/ausencias/pages/ausencia_page.dart';
-import 'package:school_schedule/modules/user/page/user_page.dart';
 
+import '../../../core/app_colors.dart';
 import '../../../core/app_images.dart';
 import '../../agenda/page/agenda_page.dart';
+import '../../ausencias/pages/ausencia_page.dart';
 import '../../disciplinas/pages/disciplina_page.dart';
 import '../../horarios/pages/horarios_page.dart';
 import '../../notas/pages/notas_page.dart';
+import '../../user/page/user_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -42,7 +38,7 @@ class _HomePageState extends State<HomePage> {
               style: TextStyle(color: Colors.black),
             ),
             GestureDetector(
-              child: SvgPicture.asset(AppImages.iconUserSVG),
+              child: SvgPicture.asset(AppImages.configuracoesSVG),
               onTap: (() {
                 Navigator.push(
                   context,
@@ -54,125 +50,129 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                children: [
-                  _buildCircularButtons(
-                      100,
-                      SvgPicture.asset(AppImages.disciplinasBrancoSVG,
-                          height: 90, width: 90, fit: BoxFit.scaleDown),
-                      AppColors.corPrimaria,
-                      'Disciplinas',
-                      Colors.white, (() {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const DisciplinasPage()),
-                    );
-                  })),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _buildCircularButtons(
-                          100,
-                          SvgPicture.asset(
-                            AppImages.notasBrancoSVG,
-                            height: 90,
-                            width: 90,
-                            fit: BoxFit.scaleDown,
-                          ),
-                          AppColors.corPrimaria,
-                          'Notas',
-                          Colors.white, (() {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const NotasPage()),
-                        );
-                      })),
-                      _buildCircularButtons(
-                        15,
-                        SvgPicture.asset(AppImages.horariosAzulSVG,
-                            height: 90,
-                            width: 90,
-                            fit: BoxFit.scaleDown,
-                            color: AppColors.corPrimaria),
-                        Colors.white,
-                        'Horarios',
-                        AppColors.corPrimaria,
-                        (() {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const HorariosPage()),
-                          );
-                        }),
-                      ),
-                      _buildCircularButtons(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 18),
+          child: Column(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  children: [
+                    _buildCircularButtons(
                         100,
-                        SvgPicture.asset(AppImages.agendaBrancoSVG,
+                        SvgPicture.asset(AppImages.disciplinasBrancoSVG,
                             height: 90, width: 90, fit: BoxFit.scaleDown),
                         AppColors.corPrimaria,
-                        'Agenda',
-                        Colors.white,
-                        (() {
+                        'Disciplinas',
+                        Colors.white, (() {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const DisciplinasPage()),
+                      );
+                    })),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        _buildCircularButtons(
+                            100,
+                            SvgPicture.asset(
+                              AppImages.notasBrancoSVG,
+                              height: 90,
+                              width: 90,
+                              fit: BoxFit.scaleDown,
+                            ),
+                            AppColors.corPrimaria,
+                            'Notas',
+                            Colors.white, (() {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const AgendaPage()),
+                                builder: (context) => const NotasPage()),
                           );
-                        }),
-                      ),
-                    ],
-                  ),
-                  _buildCircularButtons(
-                      100,
-                      SvgPicture.asset(AppImages.ausenciasBrancoAzulSVG,
-                          height: 90, width: 90, fit: BoxFit.scaleDown),
-                      AppColors.corPrimaria,
-                      'Ausencias',
-                      Colors.white, (() {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const AusenciaPage()),
-                    );
-                  }))
-                ],
-              ),
-            ),
-            Container(
-              color: AppColors.corLightGray1,
-              margin: const EdgeInsets.only(top: 30),
-              child: Column(
-                children: [
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(right: 20, left: 20, top: 20),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        const Text(
-                          'Atividades de hoje:',
-                          style: TextStyle(fontSize: 18),
+                        })),
+                        _buildCircularButtons(
+                          15,
+                          SvgPicture.asset(AppImages.horariosAzulSVG,
+                              height: 90,
+                              width: 90,
+                              fit: BoxFit.scaleDown,
+                              color: AppColors.corPrimaria),
+                          Colors.white,
+                          'Horarios',
+                          AppColors.corPrimaria,
+                          (() {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const HorariosPage()),
+                            );
+                          }),
                         ),
-                        Text(
-                          DateFormat('dd/MM/yyyy').format(now).toString(),
-                          style: const TextStyle(color: AppColors.corDarkGray1),
-                        )
+                        _buildCircularButtons(
+                          100,
+                          SvgPicture.asset(AppImages.agendaBrancoSVG,
+                              height: 90, width: 90, fit: BoxFit.scaleDown),
+                          AppColors.corPrimaria,
+                          'Agenda',
+                          Colors.white,
+                          (() {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const AgendaPage()),
+                            );
+                          }),
+                        ),
                       ],
                     ),
-                  ),
-                  cardHorario(),
-                  cardHorario(),
-                  cardHorario(),
-                ],
+                    _buildCircularButtons(
+                        100,
+                        SvgPicture.asset(AppImages.ausenciasBrancoAzulSVG,
+                            height: 90, width: 90, fit: BoxFit.scaleDown),
+                        AppColors.corPrimaria,
+                        'Ausencias',
+                        Colors.white, (() {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const AusenciaPage()),
+                      );
+                    }))
+                  ],
+                ),
               ),
-            )
-          ],
+              Container(
+                color: AppColors.corLightGray1,
+                margin: const EdgeInsets.only(top: 30),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(right: 20, left: 20, top: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Text(
+                            'Atividades de hoje:',
+                            style: TextStyle(fontSize: 18),
+                          ),
+                          Text(
+                            DateFormat('dd/MM/yyyy').format(now).toString(),
+                            style:
+                                const TextStyle(color: AppColors.corDarkGray1),
+                          )
+                        ],
+                      ),
+                    ),
+                    cardHorario(),
+                    cardHorario(),
+                    cardHorario(),
+                  ],
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -185,6 +185,14 @@ class _HomePageState extends State<HomePage> {
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: const BorderRadius.all(Radius.circular(10)),
+            boxShadow: [
+              BoxShadow(
+                color: Color.fromARGB(255, 0, 0, 0).withOpacity(0.20),
+                spreadRadius: 0,
+                blurRadius: 2,
+                offset: Offset(2, 2),
+              ),
+            ],
             border: Border.all(
               width: 1.7,
               color: AppColors.corPrimaria,
@@ -268,6 +276,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         style: ElevatedButton.styleFrom(
+          elevation: 15,
           fixedSize: const Size(120, 120),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(radius),

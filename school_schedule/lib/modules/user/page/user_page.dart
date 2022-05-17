@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:school_schedule/core/app_colors.dart';
-import 'package:school_schedule/core/app_images.dart';
-
+import 'package:school_schedule_debug_version/main.dart';
+import '../../../core/app_colors.dart';
+import '../../../core/app_images.dart';
 import '../../../tela_em_desenvolvimento.dart';
 
 class UserPage extends StatefulWidget {
@@ -14,11 +14,12 @@ class UserPage extends StatefulWidget {
 }
 
 class _UserPageState extends State<UserPage> {
-  User? result = FirebaseAuth.instance.currentUser;
+  final user = FirebaseAuth.instance.currentUser;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text('Configurações'),
         backgroundColor: AppColors.corLightGray1,
         foregroundColor: Colors.black,
         elevation: 0,
@@ -33,9 +34,9 @@ class _UserPageState extends State<UserPage> {
       child: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(bottom: 18, top: 0),
+            padding: const EdgeInsets.only(bottom: 18, top: 20, left: 10),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
                   height: 72,
@@ -53,8 +54,12 @@ class _UserPageState extends State<UserPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     // ignore: prefer_const_literals_to_create_immutables
                     children: [
-                      const Text('Nome do usuario', style: TextStyle(fontSize: 18)),
-                      const Text('email@gmail.com', style: TextStyle(fontSize: 14))
+                      const Text('Nome do usuario',
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w500)),
+                      Text(user!.email!,
+                          style: TextStyle(
+                              fontSize: 15, fontWeight: FontWeight.w500))
                     ],
                   ),
                 )
@@ -62,31 +67,73 @@ class _UserPageState extends State<UserPage> {
             ),
           ),
           _buildCard(AppImages.calendarioSyncSVG, 'Sincronizar Calendário',
-              'Tenha acesso aos eventos do calendário\n do seu dispositivo aqui no aplicativo.'),
+              'Tenha acesso aos eventos do calendário\ndo seu dispositivo aqui no aplicativo.',
+              (() {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const TelaEmDesenvolvimento()),
+            );
+          })),
           _buildCard(AppImages.emailSVG, 'Fale Conosco',
-              'Mande suas duvidas e sugestões'),
-          _buildCard(AppImages.shieldSVG, 'Politica de privacdade', null),
-          _buildCard(AppImages.aboutSVG, 'Sobre', null),
+              'Mande suas duvidas e sugestões', (() {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const TelaEmDesenvolvimento()),
+            );
+          })),
+          _buildCard(AppImages.shieldSVG, 'Politica de privacdade', null, (() {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const TelaEmDesenvolvimento()),
+            );
+          })),
+          _buildCard(AppImages.aboutSVG, 'Sobre', null, (() {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const TelaEmDesenvolvimento()),
+            );
+          })),
+          _buildCard(AppImages.aboutSVG, 'Logout', null, (() {
+            _signOut();
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SplashScreen()),
+            );
+          }))
         ],
       ),
     );
   }
 
-  Widget _buildCard(String asset, String title, String? subTitle) {
+  void _signOut() async {
+    try {
+      await FirebaseAuth.instance.signOut();
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Widget _buildCard(
+      String asset, String title, String? subTitle, Function() ontap) {
     return GestureDetector(
-      onTap: (() {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => const TelaEmDesenvolvimento()),
-        );
-      }),
+      onTap: ontap,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
         child: Container(
           decoration: BoxDecoration(
             color: AppColors.corPrimaria,
             borderRadius: BorderRadius.circular(15),
+            boxShadow: [
+              BoxShadow(
+                color: Color.fromARGB(255, 18, 18, 18).withOpacity(0.28),
+                blurRadius: 2,
+                offset: Offset(2, 2),
+              ),
+            ],
           ),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -113,11 +160,14 @@ class _UserPageState extends State<UserPage> {
                       ),
                       if (subTitle != null)
                         Wrap(children: [
-                          Text(
-                            subTitle,
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
+                          Container(
+                            width: 230,
+                            child: Text(
+                              subTitle,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 12,
+                              ),
                             ),
                           ),
                         ]),

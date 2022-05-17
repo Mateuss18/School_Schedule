@@ -1,6 +1,6 @@
 {
-    "name": "school_schedule",
-    "short_name": "school_schedule",
+    "name": "school_schedule_debug_version",
+    "short_name": "school_schedule_debug_version",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

@@ -1,12 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:school_schedule/core/app_colors.dart';
-import 'package:school_schedule/core/app_images.dart';
-import 'package:social_login_buttons/social_login_buttons.dart';
 
-import '../../../core/constants.dart';
-import '../firebase_service.dart';
+import '../../../core/app_colors.dart';
+import '../../../core/app_images.dart';
+import 'create_account_page.dart';
+import 'login_page_firebase.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -26,7 +24,7 @@ class _LoginPageState extends State<LoginPage> {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Container(
-              height: heigthValue * 0.55,
+              height: heigthValue * 0.50,
               width: widthValue,
               color: Colors.white,
               child: SvgPicture.asset(
@@ -39,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
                   topLeft: Radius.circular(50), topRight: Radius.circular(50)),
               color: AppColors.corPrimaria,
             ),
-            height: heigthValue * 0.40,
+            height: heigthValue * 0.45,
             width: widthValue,
             child: Column(
               children: [
@@ -54,32 +52,41 @@ class _LoginPageState extends State<LoginPage> {
                     textAlign: TextAlign.center,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 49),
-                  child: SocialLoginButton(
-                    text: 'Entrar com Google',
-                    width: widthValue * 0.8,
-                    buttonType: SocialLoginButtonType.google,
-                    onPressed: () async {
-                      setState(() {
-                        isLoading = true;
-                      });
-                      FirebaseService service = FirebaseService();
-                      try {
-                        await service.signInwithGoogle();
-                        Navigator.pushNamedAndRemoveUntil(
-                            context, Constants.homeNavigate, (route) => false);
-                      } catch (e) {
-                        if (e is FirebaseAuthException) {
-                          print(e.message!);
-                        }
-                      }
-                      setState(() {
-                        isLoading = false;
-                      });
-                    },
-                  ),
+                const SizedBox(
+                  height: 15,
                 ),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(290, 50),
+                      primary: AppColors.corDarkGray2,
+                    ),
+                    onPressed: (() {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const CreateAccount()),
+                      );
+                    }),
+                    child: const Text('Cadastra-se')),
+                const SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      fixedSize: const Size(290, 50),
+                      primary: Colors.white,
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginPageFirebase()),
+                      );
+                    },
+                    child: const Text(
+                      'Entrar',
+                      style: TextStyle(color: Colors.black),
+                    ))
               ],
             ),
           ),
