@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:school_schedule_debug_version/main.dart';
 
 import '../../../core/app_colors.dart';
 import '../../../core/app_images.dart';
@@ -231,15 +230,26 @@ class _CreateAccountState extends State<CreateAccount> {
                         height: 15,
                       ),
                       _firebaseError
-                          ? Text(
-                              _firebaseMessage,
-                              style: const TextStyle(
-                                color: Colors.red,
+                        ? Center(
+                          child: Container(
+                            alignment: Alignment.center,
+                            width: 222,
+                            height: 23,
+                            child: Text(
+                                _firebaseMessage,
+                                style: const TextStyle(
+                                  color: Color(0xFFFF4949),
+                                ),
                               ),
-                            )
-                          : const Placeholder(
-                              fallbackHeight: 0,
-                            ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Color.fromARGB(255, 255, 255, 255),
+                              ),
+                          ),
+                        )
+                        : const Placeholder(
+                            fallbackHeight: 0,
+                          ),
                       Center(
                         child: ElevatedButton(
                             style: ElevatedButton.styleFrom(

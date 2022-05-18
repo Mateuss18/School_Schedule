@@ -1,15 +1,14 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_svg/svg.dart';
-import '../../../core/app_images.dart';
-import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:page_transition/page_transition.dart';
 
+import '../../../core/app_images.dart';
 import 'core/app_colors.dart';
 import 'modules/home/pages/home_page.dart';
-import 'modules/login/pages/login_page.dart';
+import 'modules/login_and_register/pages/login_page.dart';
 import 'modules/user/page/user_page.dart';
 
 void main() async {
