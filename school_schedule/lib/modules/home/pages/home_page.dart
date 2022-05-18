@@ -276,7 +276,7 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
         style: ElevatedButton.styleFrom(
-          elevation: 15,
+          elevation: 5,
           fixedSize: const Size(120, 120),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(radius),

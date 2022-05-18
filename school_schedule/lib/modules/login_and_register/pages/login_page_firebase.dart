@@ -157,14 +157,36 @@ class _LoginPageFirebaseState extends State<LoginPageFirebase> {
                         height: 15,
                       ),
                       if (_firebaseError == true)
-                        Text(
-                          _firebaseMessage,
-                          style: const TextStyle(
-                            color: Color.fromARGB(255, 255, 17, 0),
+                         Center(
+                          child: Container(
+                            margin: const EdgeInsets.only(bottom: 1),
+                            alignment: Alignment.center,
+                            width: 222,
+                            height: 23,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset(AppImages.xCircle),
+                                Container(
+                                  margin: const EdgeInsets.only(left: 5),
+                                  child: Text(
+                                      _firebaseMessage,
+                                      style: const TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        color: Color.fromARGB(255, 251, 54, 54),
+                                      ),
+                                    ),
+                                ),
+                              ],
+                            ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Color.fromARGB(255, 255, 255, 255),
+                              ),
                           ),
                         ),
                       const SizedBox(
-                        height: 15,
+                        height: 10,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -220,7 +242,7 @@ class _LoginPageFirebaseState extends State<LoginPageFirebase> {
                             style: TextStyle(
                                 color: Colors.white,
                                 fontWeight: FontWeight.w500,
-                                fontSize: 13),
+                                fontSize: 15),
                           ),
                           GestureDetector(
                             onTap: (() {
@@ -233,10 +255,11 @@ class _LoginPageFirebaseState extends State<LoginPageFirebase> {
                             }),
                             child: const Text(
                               'Cadastrar-se',
+                              // ignore: unnecessary_const
                               style: const TextStyle(
                                   color: AppColors.corDarkGray2,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 13),
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 15),
                             ),
                           )
                         ],
@@ -271,9 +294,9 @@ class _LoginPageFirebaseState extends State<LoginPageFirebase> {
         _firebaseError = true;
       });
       if (e.code == 'user-not-found') {
-        _firebaseMessage = 'Email incorreto ou inexistente';
+        _firebaseMessage = 'Email incorreto ou inexistente.';
       } else if (e.code == 'wrong-password') {
-        _firebaseMessage = 'Senha incorreta';
+        _firebaseMessage = 'Senha incorreta.';
       }
     } catch (e) {
       setState(() {

@@ -28,4 +28,5 @@ class AppImages {
   static const logoSplash = 'assets/images/logo_splash.svg';
   static const adicionar = 'assets/images/icon_adicionar.svg';
   static const colorPicker = 'assets/images/colorPicker.svg';
+  static const xCircle = 'assets/images/x-circle.svg';
 }

@@ -3,8 +3,6 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../core/app_colors.dart';
 import '../../../core/app_images.dart';
-import '../../../tela_em_desenvolvimento.dart';
-import '../../horarios/pages/horarios_page.dart';
 
 class NotasPage extends StatefulWidget {
   const NotasPage({Key? key}) : super(key: key);
