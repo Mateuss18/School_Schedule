@@ -29,4 +29,6 @@ class AppImages {
   static const adicionar = 'assets/images/icon_adicionar.svg';
   static const colorPicker = 'assets/images/colorPicker.svg';
   static const xCircle = 'assets/images/x-circle.svg';
+  static const salaSVG = 'assets/images/iconClass.svg';
+  static const ausenciaSVG = 'assets/images/icon_ausencia.svg';
 }

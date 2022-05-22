@@ -81,8 +81,8 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
                   return CardWidget(
                     iconAsset: AppImages.disciplinasBrancoSVG,
                     textIcon1Asset: AppImages.capeloSVG,
-                    textIcon2Asset: AppImages.ausenciasBrancoAzulSVG,
-                    textIcon3Asset: AppImages.capeloSVG,
+                    textIcon2Asset: AppImages.ausenciaSVG,
+                    textIcon3Asset: AppImages.salaSVG,
                     disciplinaName: documentSnapshot['nomeDisciplina'],
                     primaryLabel: documentSnapshot['nomeProfessor'],
                     secondaryLabel: documentSnapshot['sala'],
@@ -159,7 +159,7 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
                         _deleteDisciplinaDialog(context, disciplinaID);
                       },
                       icon: const Icon(
-                        Icons.delete,
+                        CustomIcons.iconTrash,
                         color: Colors.red,
                       ),
                     ),
@@ -171,7 +171,7 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
                           _displayTextInputDialog(context, false, disciplinaID);
                         },
                         icon: const Icon(
-                          Icons.edit,
+                          CustomIcons.iconPencil,
                           color: AppColors.corPrimaria,
                         )),
                   ],
