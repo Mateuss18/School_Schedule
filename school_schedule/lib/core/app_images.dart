@@ -31,4 +31,5 @@ class AppImages {
   static const xCircle = 'assets/images/x-circle.svg';
   static const salaSVG = 'assets/images/iconClass.svg';
   static const ausenciaSVG = 'assets/images/icon_ausencia.svg';
+  static const logOutSVG = 'assets/images/log_out.svg';
 }
