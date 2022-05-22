@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import '../../../core/app_colors.dart';
 import '../../../core/app_images.dart';
+import '../../../custom_icons.dart';
 import '../../../shared/widgets/card_widget.dart';
 
 class DisciplinasPage extends StatefulWidget {
@@ -134,7 +135,7 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: const Text('Editar Disciplina'),
+            title: const Text('Editar Disciplina', textAlign: TextAlign.center,),
             scrollable: true,
             content: Column(
               children: [
@@ -257,14 +258,14 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
             scrollable: true,
             backgroundColor: AppColors.corLightGray1,
             title: Text(
-                createOrUpdate ? 'Adicionar disciplina' : 'Editar disciplina'),
+                createOrUpdate ? 'Adicionar disciplina' : 'Editar disciplina', textAlign: TextAlign.center,),
             content: Column(
               children: [
                 TextField(
                   controller: disciplinaController,
                   onChanged: (value) {},
                   decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.book),
+                    prefixIcon: Icon(CustomIcons.iconBooks),
                     prefixIconColor: Colors.red,
                     hintText: 'Nome da disciplina',
                     fillColor: AppColors.corGray,
@@ -281,8 +282,7 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
                   controller: professorController,
                   onChanged: (value) {},
                   decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.book),
-                    prefixIconColor: Colors.red,
+                    prefixIcon: Icon(CustomIcons.iconHat),
                     hintText: 'Professor(a)',
                     fillColor: AppColors.corGray,
                     filled: true,
@@ -301,7 +301,7 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(8)),
                         borderSide: BorderSide.none),
-                    prefixIcon: Icon(Icons.book),
+                    prefixIcon: Icon(CustomIcons.iconClass),
                     prefixIconColor: Colors.red,
                     hintText: 'Sala',
                     fillColor: AppColors.corGray,
@@ -319,7 +319,7 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(8)),
                         borderSide: BorderSide.none),
-                    prefixIcon: Icon(Icons.book),
+                    prefixIcon: Icon(Icons.event_busy),
                     prefixIconColor: Colors.red,
                     hintText: 'Maximo de faltas',
                     fillColor: AppColors.corGray,
@@ -329,6 +329,7 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
                 GestureDetector(
                   onTap: (() { }),
                   child: Row(
+                    // ignore: prefer_const_literals_to_create_immutables
                     children: [
                       const Icon(
                         Icons.color_lens,
