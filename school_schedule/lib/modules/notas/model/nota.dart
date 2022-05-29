@@ -2,6 +2,7 @@ import 'dart:convert';
 
 class Nota {
   int? id;
+  String? discId;
   String? titulo;
   String? value;
   String? weight;
@@ -10,6 +11,7 @@ class Nota {
 
   Nota({
     this.id,
+    this.discId,
     this.titulo,
     this.value,
     this.weight,
@@ -24,6 +26,7 @@ class Nota {
   Map<String, dynamic> toMap() {
     return {
       'id': id,
+      'discId':discId,
       'titulo': titulo,
       'value': value,
       'weight': weight,
@@ -37,6 +40,7 @@ class Nota {
 
     return Nota(
       id: map['id'],
+      discId: map['discId'],
       titulo: map['titulo'],
       value: map['value'],
       weight: map['weight'],
@@ -51,6 +55,7 @@ class Nota {
 
   Nota copyWith({
     int? id,
+    String? discId,
     String? titulo,
     String? value,
     String? weight,
@@ -59,6 +64,7 @@ class Nota {
   }) {
     return Nota(
       id: id ?? this.id,
+      discId: discId ?? this.discId,
       titulo: titulo ?? this.titulo,
       value: value ?? this.value,
       weight: weight ?? this.weight,
@@ -78,6 +84,7 @@ class Nota {
 
     return o is Nota &&
         o.id == id &&
+        o.discId == discId &&
         o.titulo == titulo &&
         o.value == value &&
         o.weight == weight &&
@@ -88,6 +95,7 @@ class Nota {
   @override
   int get hashCode {
     return id.hashCode ^
+    discId.hashCode ^
     titulo.hashCode ^
     value.hashCode ^
     weight.hashCode ^
