@@ -8,6 +8,8 @@ import '../../../core/app_colors.dart';
 import '../../../core/app_images.dart';
 import '../../../custom_icons.dart';
 import '../../../shared/widgets/card_widget.dart';
+import '../database/disciplina_repository.dart';
+import '../model/disciplina.dart';
 
 class DisciplinasPage extends StatefulWidget {
   const DisciplinasPage({Key? key}) : super(key: key);
@@ -18,35 +20,10 @@ class DisciplinasPage extends StatefulWidget {
 
 class _DisciplinasPageState extends State<DisciplinasPage> {
   final user = FirebaseAuth.instance.currentUser;
-  final disciplinaController = TextEditingController();
-  final professorController = TextEditingController();
-  final salaController = TextEditingController();
-  final faltasController = TextEditingController();
-  final CollectionReference _disciplinas =
-      FirebaseFirestore.instance.collection('disciplinas');
+  final repository = DisciplinaDb();
 
-  Future<void> _create() async {
-    final String? userid = user!.uid;
-    final String? disciplina = disciplinaController.text;
-    final String? professor = professorController.text;
-    final String? sala = salaController.text;
-    final String? faltas = faltasController.text;
-    await _disciplinas.add({
-      "id": userid,
-      "nomeDisciplina": disciplina,
-      "nomeProfessor": professor,
-      "numeroDeFaltas": faltas,
-      "sala": sala,
-    });
+  final selectedDisciplina = null;
 
-    disciplinaController.text = '';
-    professorController.text = '';
-    salaController.text = '';
-    faltasController.text = '';
-
-    ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('$disciplina adicionada com sucesso')));
-  }
 
   Color pickerColor = const Color.fromARGB(255, 51, 253, 0);
   Color currentColor = const Color.fromARGB(255, 255, 0, 0);
@@ -69,7 +46,7 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
         ),
       ),
       body: StreamBuilder(
-        stream: _disciplinas.snapshots(),
+        stream: repository.list(user!.uid),
         builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
           if (streamSnapshot.hasData) {
             return ListView.builder(
@@ -77,32 +54,32 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
               itemBuilder: (context, index) {
                 final DocumentSnapshot documentSnapshot =
                     streamSnapshot.data!.docs[index];
-                if (user!.uid == documentSnapshot['id']) {
+                var disciplinaAtual = Disciplina(
+                  id: documentSnapshot.reference.id,
+                  userId: documentSnapshot['id'],
+                  nomeDisciplina: documentSnapshot['nomeDisciplina'],
+                  nomeProfessor: documentSnapshot['nomeProfessor'],
+                  sala: documentSnapshot['sala'],
+                  numeroDeFaltas: documentSnapshot['numeroDeFaltas'],
+                );
                   return CardWidget(
                     iconAsset: AppImages.disciplinasBrancoSVG,
                     textIcon1Asset: AppImages.capeloSVG,
                     textIcon2Asset: AppImages.ausenciaSVG,
                     textIcon3Asset: AppImages.salaSVG,
-                    disciplinaName: documentSnapshot['nomeDisciplina'],
-                    primaryLabel: documentSnapshot['nomeProfessor'],
-                    secondaryLabel: documentSnapshot['sala'],
-                    thirdlyLabel: documentSnapshot['numeroDeFaltas'],
+                    disciplinaName: disciplinaAtual.nomeDisciplina!,
+                    primaryLabel: disciplinaAtual.nomeProfessor!,
+                    secondaryLabel: disciplinaAtual.sala!,
+                    thirdlyLabel: '${disciplinaAtual.numeroDeFaltas!}',
                     color: Colors.red,
                     onpressed: () {
                       _displayInformation(
                         context,
-                        documentSnapshot['nomeDisciplina'],
-                        documentSnapshot['nomeProfessor'],
-                        documentSnapshot['sala'],
-                        documentSnapshot['numeroDeFaltas'],
-                        documentSnapshot.id,
+                        disciplinaAtual
                       );
                     },
                   );
-                } else {
-                  return Container();
                 }
-              },
             );
           } else {
             return const Center(
@@ -128,9 +105,7 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
     );
   }
 
-  _displayInformation(BuildContext context, String disciplina, String professor,
-      String sala, String maxFaltas, String disciplinaID) {
-    _disciplinas.snapshots();
+  _displayInformation(BuildContext context, Disciplina disciplina) {
     return showDialog(
         context: context,
         builder: (context) {
@@ -140,23 +115,26 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
             content: Column(
               children: [
                 Row(
-                  children: [Text(disciplina)],
+                  children: [Text(disciplina.nomeDisciplina!)],
                 ),
                 Row(
-                  children: [Text(professor)],
+                  children: [Text(disciplina.nomeProfessor!)],
                 ),
                 Row(
-                  children: [Text(sala)],
+                  children: [Text(disciplina.sala!)],
                 ),
                 Row(
-                  children: [Text(maxFaltas)],
+                  children: [Text(disciplina.numeroDeFaltas!.toString())],
+                ),
+                Row(
+                  children: [Text(disciplina.id!)],
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     IconButton(
                       onPressed: () {
-                        _deleteDisciplinaDialog(context, disciplinaID);
+                        _deleteDisciplinaDialog(context, disciplina.id!);
                       },
                       icon: const Icon(
                         CustomIcons.iconTrash,
@@ -168,7 +146,7 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
                     ),
                     IconButton(
                         onPressed: () {
-                          _displayTextInputDialog(context, false, disciplinaID);
+                          _displayTextInputDialog(context, false, disciplina);
                         },
                         icon: const Icon(
                           CustomIcons.iconPencil,
@@ -209,7 +187,7 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
                     ),
                     ElevatedButton(
                         onPressed: () {
-                          _deleteDisciplina(disciplinaID);
+                          repository.delete(disciplinaID);
                           Navigator.pop(context);
                           Navigator.pop(context);
                         },
@@ -222,35 +200,13 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
         });
   }
 
-  Future<void> _deleteDisciplina(String disciplinaId) async {
-    await _disciplinas.doc(disciplinaId).delete();
-
-    ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Disciplina deletada com sucesso')));
-  }
-
-  Future<void> _updateDisciplina(String disciplinaId) async {
-    final String? disciplina = disciplinaController.text;
-    final String? professor = professorController.text;
-    final String? sala = salaController.text;
-    final String? faltas = faltasController.text;
-    await _disciplinas.doc(disciplinaId).update({
-      "nomeDisciplina": disciplina,
-      "nomeProfessor": professor,
-      "numeroDeFaltas": faltas,
-      "sala": sala
-    });
-    disciplinaController.text = '';
-    professorController.text = '';
-    salaController.text = '';
-    faltasController.text = '';
-
-    ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Disciplina editada com sucesso')));
-  }
 
   _displayTextInputDialog(
-      BuildContext context, bool createOrUpdate, String? disciplinaId) {
+      BuildContext context, bool createOrUpdate, Disciplina? disciplina) {
+    var disciplinaAtual = disciplina ?? Disciplina(userId: user?.uid);
+    var isEditing = disciplina != null;
+    print(disciplinaAtual.toJson());
+    print(isEditing.toString());
     return showDialog(
         context: context,
         builder: (context) {
@@ -262,8 +218,8 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
             content: Column(
               children: [
                 TextField(
-                  controller: disciplinaController,
-                  onChanged: (value) {},
+                  controller: TextEditingController(text: isEditing? disciplinaAtual.nomeDisciplina : ''),
+                  onChanged: (value) {disciplinaAtual.nomeDisciplina = value;},
                   decoration: const InputDecoration(
                     prefixIcon: Icon(CustomIcons.iconBooks),
                     prefixIconColor: Colors.red,
@@ -279,8 +235,8 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
                   height: 15,
                 ),
                 TextField(
-                  controller: professorController,
-                  onChanged: (value) {},
+                  controller: TextEditingController(text: isEditing? disciplinaAtual.nomeProfessor! : ''),
+                  onChanged: (value) {disciplinaAtual.nomeProfessor = value;},
                   decoration: const InputDecoration(
                     prefixIcon: Icon(CustomIcons.iconHat),
                     hintText: 'Professor(a)',
@@ -295,8 +251,8 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
                   height: 15,
                 ),
                 TextField(
-                  controller: salaController,
-                  onChanged: (value) {},
+                  controller: TextEditingController(text: isEditing? disciplinaAtual.sala! : ''),
+                  onChanged: (value) {disciplinaAtual.sala = value;},
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -312,8 +268,8 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
                   height: 15,
                 ),
                 TextField(
-                  controller: faltasController,
-                  onChanged: (value) {},
+                  controller: TextEditingController(text: isEditing? disciplinaAtual.numeroDeFaltas.toString() : ''),
+                  onChanged: (value) {disciplinaAtual.numeroDeFaltas = int.parse(value) ;},
                   keyboardType: TextInputType.number,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(
@@ -355,8 +311,8 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
                     ElevatedButton(
                         onPressed: () {
                           createOrUpdate
-                              ? _create()
-                              : _updateDisciplina(disciplinaId!);
+                              ? repository.create(disciplinaAtual)
+                              : repository.update(disciplinaAtual.id!, disciplinaAtual);
                           Navigator.pop(context);
                         },
                         child: const Text('Salvar')),
