@@ -1,6 +1,6 @@
 class AppImages {
   const AppImages._();
-
+  static const womanBooks = 'assets/images/womanOnBooks.svg';
   static const calendarioSVG = 'assets/images/calendario-login.svg';
   static const agendaBrancoSVG = 'assets/images/agenda_branco.svg';
   static const ausenciasBrancoAzulSVG =
@@ -25,4 +25,11 @@ class AppImages {
   static const emailSVG = 'assets/images/email.svg';
   static const shieldSVG = 'assets/images/shield.svg';
   static const aboutSVG = 'assets/images/about.svg';
+  static const logoSplash = 'assets/images/logo_splash.svg';
+  static const adicionar = 'assets/images/icon_adicionar.svg';
+  static const colorPicker = 'assets/images/colorPicker.svg';
+  static const xCircle = 'assets/images/x-circle.svg';
+  static const salaSVG = 'assets/images/iconClass.svg';
+  static const ausenciaSVG = 'assets/images/icon_ausencia.svg';
+  static const logOutSVG = 'assets/images/log_out.svg';
 }

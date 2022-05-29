@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(school_schedule LANGUAGES CXX)
+project(school_schedule_debug_version LANGUAGES CXX)
 
-set(BINARY_NAME "school_schedule")
+set(BINARY_NAME "school_schedule_debug_version")
 
 cmake_policy(SET CMP0063 NEW)
 
