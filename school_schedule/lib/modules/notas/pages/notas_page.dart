@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -12,10 +13,12 @@ class NotasPage extends StatefulWidget {
 }
 
 class _NotasPageState extends State<NotasPage> {
-  final controller1 = TextEditingController();
-  final controller2 = TextEditingController();
-  final controller3 = TextEditingController();
-  final controller4 = TextEditingController();
+  final tituloController = TextEditingController();
+  final notaController = TextEditingController();
+  final CollectionReference _disciplinas =
+      FirebaseFirestore.instance.collection('disciplinas');
+  final CollectionReference _notas =
+      FirebaseFirestore.instance.collection('notas');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +30,19 @@ class _NotasPageState extends State<NotasPage> {
             _buildCard(Colors.blue),
           ],
         ));
+  }
+
+  Future<void> _create() async {
+    final String? titulo = tituloController.text;
+    final String? nota = notaController.text;
+
+    await _notas.add({
+      "discId": _disciplinas.doc,
+      "nota": nota,
+      "titulo": titulo,
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('$titulo adicionada com sucesso')));
   }
 
   Widget _buildCard(Color color) {
@@ -83,16 +99,16 @@ class _NotasPageState extends State<NotasPage> {
           return AlertDialog(
             scrollable: true,
             backgroundColor: AppColors.corLightGray1,
-            title: Text('Adicionar Disciplinas'),
+            title: Text('Adicionar Notas'),
             content: Column(
               children: [
                 TextField(
-                  controller: controller1,
+                  controller: tituloController,
                   onChanged: (value) {},
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.book),
                     prefixIconColor: Colors.red,
-                    hintText: 'Nome da disciplina',
+                    hintText: 'Titulo',
                     fillColor: AppColors.corGray,
                     filled: true,
                     border: OutlineInputBorder(
@@ -104,12 +120,12 @@ class _NotasPageState extends State<NotasPage> {
                   height: 15,
                 ),
                 TextField(
-                  controller: controller2,
+                  controller: tituloController,
                   onChanged: (value) {},
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.book),
                     prefixIconColor: Colors.red,
-                    hintText: 'Professor(a)',
+                    hintText: 'Nota',
                     fillColor: AppColors.corGray,
                     filled: true,
                     border: OutlineInputBorder(
@@ -119,37 +135,6 @@ class _NotasPageState extends State<NotasPage> {
                 ),
                 const SizedBox(
                   height: 15,
-                ),
-                TextField(
-                  controller: controller3,
-                  onChanged: (value) {},
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                        borderSide: BorderSide.none),
-                    prefixIcon: Icon(Icons.book),
-                    prefixIconColor: Colors.red,
-                    hintText: 'Sala',
-                    fillColor: AppColors.corGray,
-                    filled: true,
-                  ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                TextField(
-                  controller: controller4,
-                  onChanged: (value) {},
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                        borderSide: BorderSide.none),
-                    prefixIcon: Icon(Icons.book),
-                    prefixIconColor: Colors.red,
-                    hintText: 'Maximo de faltas',
-                    fillColor: AppColors.corGray,
-                    filled: true,
-                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -162,7 +147,11 @@ class _NotasPageState extends State<NotasPage> {
                       width: 15,
                     ),
                     ElevatedButton(
-                        onPressed: () {}, child: const Text('Salvar')),
+                        onPressed: () {
+                          _create();
+                          Navigator.pop(context);
+                        },
+                        child: const Text('Salvar')),
                   ],
                 )
               ],
