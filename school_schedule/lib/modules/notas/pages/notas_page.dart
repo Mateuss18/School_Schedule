@@ -25,10 +25,13 @@ class _NotasPageState extends State<NotasPage> {
         appBar: AppBar(
           title: const Text('Notas'),
         ),
-        body: Column(
-          children: [
-            _buildCard(Colors.blue),
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              _buildCard(Colors.blue),
+              _buildCard(Colors.green),
+            ],
+          ),
         ));
   }
 
@@ -46,49 +49,66 @@ class _NotasPageState extends State<NotasPage> {
   }
 
   Widget _buildCard(Color color) {
-    return GestureDetector(
-      onTap: (() {
-        return _displayTextInputDialog(context);
-      }),
-      child: Padding(
-        padding: const EdgeInsets.only(top: 15, right: 15, left: 15),
-        child: Container(
-          height: 100,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(10)),
-              gradient: LinearGradient(
-                begin: Alignment.center,
-                end: Alignment.centerRight,
-                colors: [
-                  color,
-                  color.withOpacity(0.5),
-                ],
-              )),
+    return Column(
+      children: [
+        GestureDetector(
+          onTap: () {},
           child: Padding(
-            padding: const EdgeInsets.all(20),
-            child: Row(
-              children: [
-                SvgPicture.asset(AppImages.notasCanetaSVG),
-                Padding(
-                  padding: const EdgeInsets.only(left: 20),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Disciplina',
-                        style: TextStyle(fontSize: 16),
-                      ),
-                      Text('Média: 10', style: TextStyle(fontSize: 12)),
-                      Text('Total de notas: 3', style: TextStyle(fontSize: 12)),
+            padding: const EdgeInsets.only(top: 15, right: 15, left: 15),
+            child: Container(
+              height: 100,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(10)),
+                  gradient: LinearGradient(
+                    begin: Alignment.center,
+                    end: Alignment.centerRight,
+                    colors: [
+                      color,
+                      color.withOpacity(0.5),
                     ],
-                  ),
-                )
-              ],
+                  )),
+              child: Padding(
+                padding: const EdgeInsets.all(20),
+                child: Row(
+                  children: [
+                    SvgPicture.asset(AppImages.notasCanetaSVG),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Disciplina',
+                            style: TextStyle(fontSize: 16),
+                          ),
+                          Text('Média: 10', style: TextStyle(fontSize: 12)),
+                          Text('Total de notas: 3',
+                              style: TextStyle(fontSize: 12)),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
             ),
           ),
         ),
-      ),
+        Column(
+          children: [
+            ExpansionTile(
+              title: Text('expandeeeed'),
+              children: [
+                Container(
+                  color: Colors.red,
+                  height: 20,
+                  width: 300,
+                )
+              ],
+            )
+          ],
+        )
+      ],
     );
   }
 
