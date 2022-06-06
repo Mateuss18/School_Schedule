@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:form_field_validator/form_field_validator.dart';
 import '../../../core/app_colors.dart';
 import '../../../core/app_images.dart';
 import '../../../custom_icons.dart';
@@ -17,6 +18,7 @@ class DisciplinasPage extends StatefulWidget {
 }
 
 class _DisciplinasPageState extends State<DisciplinasPage> {
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final user = FirebaseAuth.instance.currentUser;
   final disciplinaController = TextEditingController();
   final professorController = TextEditingController();
@@ -135,7 +137,10 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: const Text('Editar Disciplina', textAlign: TextAlign.center,),
+            title: const Text(
+              'Editar Disciplina',
+              textAlign: TextAlign.center,
+            ),
             scrollable: true,
             content: Column(
               children: [
@@ -258,111 +263,138 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
             scrollable: true,
             backgroundColor: AppColors.corLightGray1,
             title: Text(
-                createOrUpdate ? 'Adicionar disciplina' : 'Editar disciplina', textAlign: TextAlign.center,),
-            content: Column(
-              children: [
-                TextField(
-                  controller: disciplinaController,
-                  onChanged: (value) {},
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(CustomIcons.iconBooks),
-                    prefixIconColor: Colors.red,
-                    hintText: 'Nome da disciplina',
-                    fillColor: AppColors.corGray,
-                    filled: true,
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                        borderSide: BorderSide.none),
+              createOrUpdate ? 'Adicionar disciplina' : 'Editar disciplina',
+              textAlign: TextAlign.center,
+            ),
+            content: Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  TextFormField(
+                    validator: RequiredValidator(
+                        errorText: 'Campo não pode ser vazio'),
+                    controller: disciplinaController,
+                    onChanged: (value) {},
+                    decoration: const InputDecoration(
+                      prefixIcon: Icon(CustomIcons.iconBooks),
+                      prefixIconColor: Colors.red,
+                      hintText: 'Nome da disciplina',
+                      fillColor: AppColors.corGray,
+                      filled: true,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                          borderSide: BorderSide.none),
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                TextField(
-                  controller: professorController,
-                  onChanged: (value) {},
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(CustomIcons.iconHat),
-                    hintText: 'Professor(a)',
-                    fillColor: AppColors.corGray,
-                    filled: true,
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                        borderSide: BorderSide.none),
+                  const SizedBox(
+                    height: 15,
                   ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                TextField(
-                  controller: salaController,
-                  onChanged: (value) {},
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                        borderSide: BorderSide.none),
-                    prefixIcon: Icon(CustomIcons.iconClass),
-                    prefixIconColor: Colors.red,
-                    hintText: 'Sala',
-                    fillColor: AppColors.corGray,
-                    filled: true,
+                  TextFormField(
+                    validator: RequiredValidator(
+                        errorText: 'Campo não pode ser vazio'),
+                    controller: professorController,
+                    onChanged: (value) {},
+                    decoration: const InputDecoration(
+                      prefixIcon: Icon(CustomIcons.iconHat),
+                      hintText: 'Professor(a)',
+                      fillColor: AppColors.corGray,
+                      filled: true,
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                          borderSide: BorderSide.none),
+                    ),
                   ),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                TextField(
-                  controller: faltasController,
-                  onChanged: (value) {},
-                  keyboardType: TextInputType.number,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(8)),
-                        borderSide: BorderSide.none),
-                    prefixIcon: Icon(Icons.event_busy),
-                    prefixIconColor: Colors.red,
-                    hintText: 'Maximo de faltas',
-                    fillColor: AppColors.corGray,
-                    filled: true,
+                  const SizedBox(
+                    height: 15,
                   ),
-                ),
-                GestureDetector(
-                  onTap: (() { }),
-                  child: Row(
-                    // ignore: prefer_const_literals_to_create_immutables
+                  TextFormField(
+                    validator: RequiredValidator(
+                        errorText: 'Campo não pode ser vazio'),
+                    controller: salaController,
+                    onChanged: (value) {},
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                          borderSide: BorderSide.none),
+                      prefixIcon: Icon(CustomIcons.iconClass),
+                      prefixIconColor: Colors.red,
+                      hintText: 'Sala',
+                      fillColor: AppColors.corGray,
+                      filled: true,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  TextFormField(
+                    validator: RequiredValidator(
+                        errorText: 'Campo não pode ser vazio'),
+                    controller: faltasController,
+                    onChanged: (value) {},
+                    keyboardType: TextInputType.number,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(8)),
+                          borderSide: BorderSide.none),
+                      prefixIcon: Icon(Icons.event_busy),
+                      prefixIconColor: Colors.red,
+                      hintText: 'Maximo de faltas',
+                      fillColor: AppColors.corGray,
+                      filled: true,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: (() {}),
+                    child: Row(
+                      // ignore: prefer_const_literals_to_create_immutables
+                      children: [
+                        const Icon(
+                          Icons.color_lens,
+                          color: AppColors.corPrimaria,
+                        ),
+                        const Expanded(child: Text('Adicione uma cor'))
+                      ],
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Icon(
-                        Icons.color_lens,
-                        color: AppColors.corPrimaria,
-                      ),
-                      const Expanded(child: Text('Adicione uma cor'))
-                    ],
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(primary: Colors.red),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text('Cancelar'),
-                    ),
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    ElevatedButton(
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(primary: Colors.red),
                         onPressed: () {
-                          createOrUpdate
-                              ? _create()
-                              : _updateDisciplina(disciplinaId!);
                           Navigator.pop(context);
                         },
-                        child: const Text('Salvar')),
-                  ],
-                ),
-              ],
+                        child: const Text('Cancelar'),
+                      ),
+                      const SizedBox(
+                        width: 15,
+                      ),
+                      ElevatedButton(
+                          onPressed: () {
+                            if (_formKey.currentState!.validate() == false) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                  backgroundColor: Colors.white,
+                                  content: Text(
+                                    'Campos Obrigatórios',
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            } else {
+                              createOrUpdate
+                                  ? _create()
+                                  : _updateDisciplina(disciplinaId!);
+                              Navigator.pop(context);
+                            }
+                          },
+                          child: const Text('Salvar')),
+                    ],
+                  ),
+                ],
+              ),
             ),
           );
         });
