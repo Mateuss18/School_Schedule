@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import '../../../core/app_colors.dart';
 import '../../../core/app_images.dart';
@@ -144,17 +145,76 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
             scrollable: true,
             content: Column(
               children: [
-                Row(
-                  children: [Text(disciplina)],
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 10),
+                    child: Row(
+                      children: [
+                        SvgPicture.asset(
+                          AppImages.disciplinasBrancoSVG,
+                          color: AppColors.corDarkGray1,
+                          width: 20,
+                          height: 20,
+                        ),
+                        const SizedBox(
+                          width: 10,
+                        ),
+                        Text(disciplina)
+                      ],
+                    ),
+                  ),
                 ),
-                Row(
-                  children: [Text(professor)],
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        AppImages.capeloSVG,
+                        color: AppColors.corDarkGray1,
+                        width: 20,
+                        height: 20,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(professor)
+                    ],
+                  ),
                 ),
-                Row(
-                  children: [Text(sala)],
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        AppImages.salaSVG,
+                        color: AppColors.corDarkGray1,
+                        width: 20,
+                        height: 20,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(sala)
+                    ],
+                  ),
                 ),
-                Row(
-                  children: [Text(maxFaltas)],
+                Padding(
+                  padding: const EdgeInsets.only(top: 10),
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        AppImages.ausenciaSVG,
+                        color: AppColors.corDarkGray1,
+                        width: 20,
+                        height: 20,
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(maxFaltas)
+                    ],
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
