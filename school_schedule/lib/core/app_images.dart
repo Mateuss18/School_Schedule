@@ -25,4 +25,5 @@ class AppImages {
   static const emailSVG = 'assets/images/email.svg';
   static const shieldSVG = 'assets/images/shield.svg';
   static const aboutSVG = 'assets/images/about.svg';
+  static const adicionarSVG = 'assets/images/icon_adicionar.svg';
 }
