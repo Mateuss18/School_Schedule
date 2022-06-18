@@ -68,64 +68,167 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      body: StreamBuilder(
-        stream: _disciplinas.snapshots(),
-        builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-          if (streamSnapshot.hasData) {
-            return ListView.builder(
-              itemCount: streamSnapshot.data!.docs.length,
-              itemBuilder: (context, index) {
-                final DocumentSnapshot documentSnapshot =
-                    streamSnapshot.data!.docs[index];
-                if (user!.uid == documentSnapshot['id']) {
-                  return CardWidget(
-                    iconAsset: AppImages.disciplinasBrancoSVG,
-                    textIcon1Asset: AppImages.capeloSVG,
-                    textIcon2Asset: AppImages.ausenciaSVG,
-                    textIcon3Asset: AppImages.salaSVG,
-                    disciplinaName: documentSnapshot['nomeDisciplina'],
-                    primaryLabel: documentSnapshot['nomeProfessor'],
-                    secondaryLabel: documentSnapshot['sala'],
-                    thirdlyLabel: documentSnapshot['numeroDeFaltas'],
-                    color: Colors.red,
-                    onpressed: () {
-                      _displayInformation(
-                        context,
-                        documentSnapshot['nomeDisciplina'],
-                        documentSnapshot['nomeProfessor'],
-                        documentSnapshot['sala'],
-                        documentSnapshot['numeroDeFaltas'],
-                        documentSnapshot.id,
-                      );
-                    },
-                  );
-                } else {
-                  return Container();
-                }
-              },
-            );
-          } else {
-            return const Center(
-              child: Text('Nenhuma disciplina adicionada'),
-            );
-          }
-        },
-      ),
-      bottomSheet: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: Column(
         children: [
-          IconButton(
-            color: AppColors.corPrimaria,
-            alignment: Alignment.center,
-            onPressed: (() {
-              _displayTextInputDialog(context, true, null);
-            }),
-            iconSize: 23,
-            icon: const Icon(Icons.add),
+          CardWidget(
+            iconAsset: AppImages.disciplinasBrancoSVG,
+            disciplinaName: 'Matematica',
+            primaryLabel: 'Armando',
+            secondaryLabel: 'Sala A4',
+            thirdlyLabel: '12',
+            color: AppColors.corRed,
+            onpressed: () {
+              _displayInformation(
+                context,
+                'Matematica',
+                'Armando',
+                'Sala a4',
+                '12',
+                '',
+              );
+            },
+          ),
+          CardWidget(
+            iconAsset: AppImages.disciplinasBrancoSVG,
+            disciplinaName: 'Eng.Software',
+            primaryLabel: 'Kleber',
+            secondaryLabel: 'Sala a11',
+            thirdlyLabel: '8',
+            color: Colors.pink,
+            onpressed: () {
+              _displayInformation(
+                context,
+                'Eng.Software',
+                'Kleber',
+                'Sala a11',
+                '8',
+                '',
+              );
+            },
+          ),
+          CardWidget(
+            iconAsset: AppImages.disciplinasBrancoSVG,
+            disciplinaName: 'Calculo',
+            primaryLabel: 'Cabrini',
+            secondaryLabel: 'Sala b8',
+            thirdlyLabel: '4',
+            color: Colors.blue,
+            onpressed: () {
+              _displayInformation(
+                context,
+                'Calculo',
+                'Cabrini',
+                'Sala b8',
+                '4',
+                '',
+              );
+            },
+          ),
+          CardWidget(
+            iconAsset: AppImages.disciplinasBrancoSVG,
+            disciplinaName: 'Estatistica',
+            primaryLabel: 'Paula Tejando',
+            secondaryLabel: 'Sala b5',
+            thirdlyLabel: '12',
+            color: Colors.green,
+            onpressed: () {
+              _displayInformation(
+                context,
+                'Estatistica',
+                'Paula Tejando',
+                'Sala b5',
+                '12',
+                '',
+              );
+            },
+          ),
+          CardWidget(
+            iconAsset: AppImages.disciplinasBrancoSVG,
+            disciplinaName: 'Estrutura de dados',
+            primaryLabel: 'Toni',
+            secondaryLabel: 'Sala A10',
+            thirdlyLabel: '0',
+            color: Colors.orange,
+            onpressed: () {
+              _displayInformation(
+                context,
+                'Estrutura de dados',
+                'Toni',
+                'Sala A10',
+                '0',
+                '',
+              );
+            },
           ),
         ],
       ),
     );
+    // Scaffold(
+    //   appBar: AppBar(
+    //     backgroundColor: AppColors.corPrimaria,
+    //     title: const Text(
+    //       'Disciplinas',
+    //       style: TextStyle(color: Colors.white),
+    //     ),
+    //   ),
+    //   body: StreamBuilder(
+    //     stream: _disciplinas.snapshots(),
+    //     builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+    //       if (streamSnapshot.hasData) {
+    //         return ListView.builder(
+    //           itemCount: streamSnapshot.data!.docs.length,
+    //           itemBuilder: (context, index) {
+    //             final DocumentSnapshot documentSnapshot =
+    //                 streamSnapshot.data!.docs[index];
+    //             if (user!.uid == documentSnapshot['id']) {
+    //               return CardWidget(
+    //                 iconAsset: AppImages.disciplinasBrancoSVG,
+    //                 textIcon1Asset: AppImages.capeloSVG,
+    //                 textIcon2Asset: AppImages.ausenciaSVG,
+    //                 textIcon3Asset: AppImages.salaSVG,
+    //                 disciplinaName: documentSnapshot['nomeDisciplina'],
+    //                 primaryLabel: documentSnapshot['nomeProfessor'],
+    //                 secondaryLabel: documentSnapshot['sala'],
+    //                 thirdlyLabel: documentSnapshot['numeroDeFaltas'],
+    //                 color: Colors.red,
+    //                 onpressed: () {
+    //                   _displayInformation(
+    //                     context,
+    //                     documentSnapshot['nomeDisciplina'],
+    //                     documentSnapshot['nomeProfessor'],
+    //                     documentSnapshot['sala'],
+    //                     documentSnapshot['numeroDeFaltas'],
+    //                     documentSnapshot.id,
+    //                   );
+    //                 },
+    //               );
+    //             } else {
+    //               return Container();
+    //             }
+    //           },
+    //         );
+    //       } else {
+    //         return const Center(
+    //           child: Text('Nenhuma disciplina adicionada'),
+    //         );
+    //       }
+    //     },
+    //   ),
+    //   bottomSheet: Row(
+    //     mainAxisAlignment: MainAxisAlignment.center,
+    //     children: [
+    //       IconButton(
+    //         color: AppColors.corPrimaria,
+    //         alignment: Alignment.center,
+    //         onPressed: (() {
+    //           _displayTextInputDialog(context, true, null);
+    //         }),
+    //         iconSize: 23,
+    //         icon: const Icon(Icons.add),
+    //       ),
+    //     ],
+    //   ),
+    // );
   }
 
   _displayInformation(BuildContext context, String disciplina, String professor,
@@ -135,7 +238,10 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: const Text('Editar Disciplina', textAlign: TextAlign.center,),
+            title: const Text(
+              'Editar Disciplina',
+              textAlign: TextAlign.center,
+            ),
             scrollable: true,
             content: Column(
               children: [
@@ -258,7 +364,9 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
             scrollable: true,
             backgroundColor: AppColors.corLightGray1,
             title: Text(
-                createOrUpdate ? 'Adicionar disciplina' : 'Editar disciplina', textAlign: TextAlign.center,),
+              createOrUpdate ? 'Adicionar disciplina' : 'Editar disciplina',
+              textAlign: TextAlign.center,
+            ),
             content: Column(
               children: [
                 TextField(
@@ -327,7 +435,7 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
                   ),
                 ),
                 GestureDetector(
-                  onTap: (() { }),
+                  onTap: (() {}),
                   child: Row(
                     // ignore: prefer_const_literals_to_create_immutables
                     children: [

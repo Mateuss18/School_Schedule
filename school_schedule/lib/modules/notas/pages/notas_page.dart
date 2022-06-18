@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../core/app_colors.dart';
 import '../../../core/app_images.dart';
+import '../../../shared/widgets/card_widget.dart';
 
 class NotasPage extends StatefulWidget {
   const NotasPage({Key? key}) : super(key: key);
@@ -25,11 +26,128 @@ class _NotasPageState extends State<NotasPage> {
         appBar: AppBar(
           title: const Text('Notas'),
         ),
-        body: Column(
-          children: [
-            _buildCard(Colors.blue),
-          ],
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Column(
+                children: [
+                  ExpansionTile(
+                    children: [
+                      sadas('Avaliação 2', '8'),
+                      sadas('Trabalho gestao', '9')
+                    ],
+                    backgroundColor: Colors.white,
+                    title: CardWidget(
+                      iconAsset: AppImages.disciplinasBrancoSVG,
+                      disciplinaName: 'Eng.Software',
+                      primaryLabel: 'Média: 10.0',
+                      secondaryLabel: 'Total de notas: 1',
+                      thirdlyLabel: '',
+                      color: AppColors.corRed,
+                      onpressed: () {},
+                    ),
+                  ),
+                  ExpansionTile(
+                    children: [
+                      sadas('Avaliação 2', '8'),
+                      sadas('Trabalho gestao', '9')
+                    ],
+                    backgroundColor: Colors.white,
+                    title: CardWidget(
+                      iconAsset: AppImages.disciplinasBrancoSVG,
+                      disciplinaName: 'Eng.Software',
+                      primaryLabel: 'Média: 10.0',
+                      secondaryLabel: 'Total de notas: 1',
+                      thirdlyLabel: '',
+                      color: Colors.pink,
+                      onpressed: () {},
+                    ),
+                  ),
+                  ExpansionTile(
+                    children: [
+                      sadas('Avaliação 2', '8'),
+                      sadas('Trabalho gestao', '9')
+                    ],
+                    backgroundColor: Colors.white,
+                    title: CardWidget(
+                      iconAsset: AppImages.disciplinasBrancoSVG,
+                      disciplinaName: 'Eng.Software',
+                      primaryLabel: 'Média: 10.0',
+                      secondaryLabel: 'Total de notas: 1',
+                      thirdlyLabel: '',
+                      color: Colors.blue,
+                      onpressed: () {},
+                    ),
+                  ),
+                  ExpansionTile(
+                    children: [
+                      sadas('Avaliação 2', '8'),
+                      sadas('Trabalho gestao', '9')
+                    ],
+                    backgroundColor: Colors.white,
+                    title: CardWidget(
+                      iconAsset: AppImages.disciplinasBrancoSVG,
+                      disciplinaName: 'Eng.Software',
+                      primaryLabel: 'Média: 10.0',
+                      secondaryLabel: 'Total de notas: 1',
+                      thirdlyLabel: '',
+                      color: Colors.green,
+                      onpressed: () {},
+                    ),
+                  ),
+                  ExpansionTile(
+                    children: [
+                      sadas('Avaliação 2', '8'),
+                      sadas('Trabalho gestao', '9'),
+                      sadas('Trabalho gestao', '9'),
+                      sadas('Trabalho gestao', '9'),
+                    ],
+                    backgroundColor: Colors.white,
+                    title: CardWidget(
+                      iconAsset: AppImages.disciplinasBrancoSVG,
+                      disciplinaName: 'Eng.Software',
+                      primaryLabel: 'Média: 10.0',
+                      secondaryLabel: 'Total de notas: 1',
+                      thirdlyLabel: '',
+                      color: Colors.orange,
+                      onpressed: () {},
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ));
+  }
+
+  Widget sadas(String titulo, String nota) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+      child: Row(
+        children: [
+          Stack(
+            children: [
+              Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(45),
+                  color: AppColors.corDarkGrey3,
+                ),
+                child: Icon(
+                  Icons.book,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          Text('${titulo}: ${nota}')
+        ],
+      ),
+    );
   }
 
   Future<void> _create() async {

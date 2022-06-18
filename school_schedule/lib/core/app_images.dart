@@ -32,4 +32,8 @@ class AppImages {
   static const salaSVG = 'assets/images/iconClass.svg';
   static const ausenciaSVG = 'assets/images/icon_ausencia.svg';
   static const logOutSVG = 'assets/images/log_out.svg';
+  static const ausenciaGrand = 'assets/images/ausencia_branco_grande.svg';
+  static const atividadesbrancoazul =
+      'assets/images/atividades_branco_azul.svg';
+  static const avaliacaobrancoazul = 'assets/images/avaliacao_branco_azul.svg';
 }

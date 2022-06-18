@@ -165,9 +165,57 @@ class _HomePageState extends State<HomePage> {
                         ],
                       ),
                     ),
-                    cardHorario(),
-                    cardHorario(),
-                    cardHorario(),
+                    cardHorario(
+                        AppColors.corRed,
+                        'Horarios',
+                        'Atividades',
+                        null,
+                        null,
+                        SvgPicture.asset(AppImages.iconHorarioAzulBrancoSVG), [
+                      itemList(Colors.blue, 'Atividade 1'),
+                      itemList(Colors.red, 'asdas'),
+                      itemList(Colors.red, 'asdas'),
+                    ], () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const HorariosPage()),
+                      );
+                    }),
+                    cardHorario(
+                        AppColors.corRed,
+                        'Atividades',
+                        'Atividades',
+                        null,
+                        null,
+                        SvgPicture.asset(AppImages.avaliacaobrancoazul), [
+                      itemList(Colors.green, 'asdasdasd'),
+                      itemList(Colors.red, 'asdas'),
+                      itemList(Colors.red, 'asdas'),
+                    ], () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const NotasPage()),
+                      );
+                    }),
+                    cardHorario(
+                        AppColors.corRed,
+                        'Avaliações',
+                        'Atividades',
+                        null,
+                        null,
+                        SvgPicture.asset(AppImages.atividadesbrancoazul), [
+                      itemList(Colors.red, 'asdas'),
+                      itemList(Colors.red, 'asdas'),
+                      itemList(Colors.red, 'asdas'),
+                    ], () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const NotasPage()),
+                      );
+                    }),
                   ],
                 ),
               )
@@ -178,7 +226,16 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget cardHorario() {
+  Widget cardHorario(
+    Color color,
+    String title,
+    String subtitle,
+    String? thertlyTitle,
+    String? fuourtlyTitle,
+    SvgPicture svg,
+    List<Widget> lista,
+    Function() onTap,
+  ) {
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Container(
@@ -205,29 +262,14 @@ class _HomePageState extends State<HomePage> {
                 padding: const EdgeInsets.only(right: 10, bottom: 10),
                 child: Row(
                   children: [
-                    SvgPicture.asset(AppImages.iconHorarioAzulBrancoSVG),
+                    svg,
                     const SizedBox(width: 8),
-                    const Text(
-                      'Horarios',
-                      style: TextStyle(fontSize: 15),
-                    ),
+                    Text(title, style: TextStyle(fontSize: 15)),
                   ],
                 ),
               ),
-              Container(
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(6)),
-                  color: AppColors.corPrimaria,
-                ),
-                width: 320,
-                height: 60,
-                margin: const EdgeInsets.only(bottom: 10),
-                child: const Center(
-                  child: Text(
-                    'Não há aulas hoje',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
+              Column(
+                children: lista,
               ),
               const Divider(
                 thickness: 1.7,
@@ -236,10 +278,14 @@ class _HomePageState extends State<HomePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  const Text(
-                    'Mostrar mais   ',
-                    style:
-                        TextStyle(color: AppColors.corDarkGray1, fontSize: 12),
+                  GestureDetector(
+                    // ignore: avoid_print
+                    onTap: onTap,
+                    child: const Text(
+                      'Mostrar mais   ',
+                      style: TextStyle(
+                          color: AppColors.corDarkGray1, fontSize: 12),
+                    ),
                   ),
                   SvgPicture.asset(
                     AppImages.setaSVG,
@@ -251,6 +297,25 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
+    );
+  }
+
+  Widget itemList(Color color, String value) {
+    return Row(
+      children: [
+        Container(
+          width: 10,
+          height: 10,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(45),
+            color: color,
+          ),
+        ),
+        SizedBox(
+          width: 15,
+        ),
+        Text(value),
+      ],
     );
   }
 
