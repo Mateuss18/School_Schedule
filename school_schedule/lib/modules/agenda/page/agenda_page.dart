@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
-import 'package:school_schedule_debug_version/core/app_colors.dart';
-import 'package:school_schedule_debug_version/core/app_images.dart';
 import 'package:table_calendar/table_calendar.dart';
+
+import '../../../core/app_colors.dart';
+import '../../../core/app_images.dart';
 
 class AgendaPage extends StatefulWidget {
   const AgendaPage({Key? key}) : super(key: key);
