@@ -33,47 +33,19 @@ class _NotasPageState extends State<NotasPage> {
                 children: [
                   ExpansionTile(
                     children: [
-                      sadas('Avaliação 2', '8'),
-                      sadas('Trabalho gestao', '9')
+                      sadas('Sprint 1', '8.4'),
+                      sadas('Sprint 2', '8.7'),
+                      sadas('Sprint 3', '8.8'),
+                      sadas('Sprint 4', '10'),
+                      sadas('Sprint 5', '10'),
+                      sadas('Sprint 6', '9.7'),
                     ],
                     backgroundColor: Colors.white,
                     title: CardWidget(
                       iconAsset: AppImages.disciplinasBrancoSVG,
-                      disciplinaName: 'Eng.Software',
-                      primaryLabel: 'Média: 10.0',
-                      secondaryLabel: 'Total de notas: 1',
-                      thirdlyLabel: '',
-                      color: AppColors.corRed,
-                      onpressed: () {},
-                    ),
-                  ),
-                  ExpansionTile(
-                    children: [
-                      sadas('Avaliação 2', '8'),
-                      sadas('Trabalho gestao', '9')
-                    ],
-                    backgroundColor: Colors.white,
-                    title: CardWidget(
-                      iconAsset: AppImages.disciplinasBrancoSVG,
-                      disciplinaName: 'Eng.Software',
-                      primaryLabel: 'Média: 10.0',
-                      secondaryLabel: 'Total de notas: 1',
-                      thirdlyLabel: '',
-                      color: Colors.pink,
-                      onpressed: () {},
-                    ),
-                  ),
-                  ExpansionTile(
-                    children: [
-                      sadas('Avaliação 2', '8'),
-                      sadas('Trabalho gestao', '9')
-                    ],
-                    backgroundColor: Colors.white,
-                    title: CardWidget(
-                      iconAsset: AppImages.disciplinasBrancoSVG,
-                      disciplinaName: 'Eng.Software',
-                      primaryLabel: 'Média: 10.0',
-                      secondaryLabel: 'Total de notas: 1',
+                      disciplinaName: 'Lab Eng Software',
+                      primaryLabel: 'Média: 9',
+                      secondaryLabel: 'Total de notas: 6',
                       thirdlyLabel: '',
                       color: Colors.blue,
                       onpressed: () {},
@@ -81,15 +53,35 @@ class _NotasPageState extends State<NotasPage> {
                   ),
                   ExpansionTile(
                     children: [
-                      sadas('Avaliação 2', '8'),
-                      sadas('Trabalho gestao', '9')
+                      sadas('P1', '10'),
+                      sadas('P2', '5'),
+                      sadas('P3', '8'),
+                      sadas('P4', '10'),
                     ],
                     backgroundColor: Colors.white,
                     title: CardWidget(
                       iconAsset: AppImages.disciplinasBrancoSVG,
-                      disciplinaName: 'Eng.Software',
-                      primaryLabel: 'Média: 10.0',
-                      secondaryLabel: 'Total de notas: 1',
+                      disciplinaName: 'Met Pesquisa',
+                      primaryLabel: 'Média: 8.6',
+                      secondaryLabel: 'Total de notas: 4',
+                      thirdlyLabel: '',
+                      color: Colors.brown,
+                      onpressed: () {},
+                    ),
+                  ),
+                  ExpansionTile(
+                    children: [
+                      sadas('Avaliação 1', '8'),
+                      sadas('Lista 1', '10'),
+                      sadas('Lista 2', '10'),
+                      sadas('Avaliação 2', '7'),
+                    ],
+                    backgroundColor: Colors.white,
+                    title: CardWidget(
+                      iconAsset: AppImages.disciplinasBrancoSVG,
+                      disciplinaName: 'Cálculo',
+                      primaryLabel: 'Média: 8.5',
+                      secondaryLabel: 'Total de notas: 4',
                       thirdlyLabel: '',
                       color: Colors.green,
                       onpressed: () {},
@@ -97,17 +89,31 @@ class _NotasPageState extends State<NotasPage> {
                   ),
                   ExpansionTile(
                     children: [
+                      sadas('Apresentação', '10'),
+                      sadas('Lista', '9')
+                    ],
+                    backgroundColor: AppColors.corRed,
+                    title: CardWidget(
+                      iconAsset: AppImages.disciplinasBrancoSVG,
+                      disciplinaName: 'Inglês V',
+                      primaryLabel: 'Média: 9.8',
+                      secondaryLabel: 'Total de notas: 2',
+                      thirdlyLabel: '',
+                      color: AppColors.corRed,
+                      onpressed: () {},
+                    ),
+                  ),
+                  ExpansionTile(
+                    children: [
+                      sadas('Avaliação 1', '6'),
                       sadas('Avaliação 2', '8'),
-                      sadas('Trabalho gestao', '9'),
-                      sadas('Trabalho gestao', '9'),
-                      sadas('Trabalho gestao', '9'),
                     ],
                     backgroundColor: Colors.white,
                     title: CardWidget(
                       iconAsset: AppImages.disciplinasBrancoSVG,
-                      disciplinaName: 'Eng.Software',
-                      primaryLabel: 'Média: 10.0',
-                      secondaryLabel: 'Total de notas: 1',
+                      disciplinaName: 'Estrutura de Dados',
+                      primaryLabel: 'Média: 7',
+                      secondaryLabel: 'Total de notas: 2',
                       thirdlyLabel: '',
                       color: Colors.orange,
                       onpressed: () {},
