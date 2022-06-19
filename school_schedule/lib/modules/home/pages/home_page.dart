@@ -99,7 +99,7 @@ class _HomePageState extends State<HomePage> {
                               fit: BoxFit.scaleDown,
                               color: AppColors.corPrimaria),
                           Colors.white,
-                          'Horarios',
+                          'Horários',
                           AppColors.corPrimaria,
                           (() {
                             Navigator.push(
@@ -131,7 +131,7 @@ class _HomePageState extends State<HomePage> {
                         SvgPicture.asset(AppImages.ausenciasBrancoAzulSVG,
                             height: 90, width: 90, fit: BoxFit.scaleDown),
                         AppColors.corPrimaria,
-                        'Ausencias',
+                        'Ausências',
                         Colors.white, (() {
                       Navigator.push(
                         context,
@@ -167,14 +167,16 @@ class _HomePageState extends State<HomePage> {
                     ),
                     cardHorario(
                         AppColors.corRed,
-                        'Horarios',
+                        'Horários',
                         'Atividades',
                         null,
                         null,
                         SvgPicture.asset(AppImages.iconHorarioAzulBrancoSVG), [
-                      itemList(Colors.blue, 'Atividade 1'),
-                      itemList(Colors.red, 'asdas'),
-                      itemList(Colors.red, 'asdas'),
+                      itemList(Colors.blue,
+                          'Lab Engenharia de Software\n 7:40 - 9:20'),
+                      itemList(Colors.white, ''),
+                      itemList(
+                          Colors.orange, 'Estrutura de Dados\n 9:30 - 13:00'),
                     ], () {
                       Navigator.push(
                         context,
@@ -189,9 +191,11 @@ class _HomePageState extends State<HomePage> {
                         null,
                         null,
                         SvgPicture.asset(AppImages.avaliacaobrancoazul), [
-                      itemList(Colors.green, 'asdasdasd'),
-                      itemList(Colors.red, 'asdas'),
-                      itemList(Colors.red, 'asdas'),
+                      itemList(Colors.blue, 'Apresentação da Sprint Final\n Lab Engenharia de Software'),
+                      itemList(Colors.white, ''),
+                      itemList(Colors.pink, 'Entrega trabalho no Teams\n Inglês V'),
+                      itemList(Colors.white, ''),
+                      itemList(Colors.brown, 'Relatorio desenvolvimento TCC 1\n Met Pesquisa'),
                     ], () {
                       Navigator.push(
                         context,
@@ -206,9 +210,7 @@ class _HomePageState extends State<HomePage> {
                         null,
                         null,
                         SvgPicture.asset(AppImages.atividadesbrancoazul), [
-                      itemList(Colors.red, 'asdas'),
-                      itemList(Colors.red, 'asdas'),
-                      itemList(Colors.red, 'asdas'),
+                      itemList(Colors.orange, 'Prova 2\n Estrutura de Dados'),
                     ], () {
                       Navigator.push(
                         context,
