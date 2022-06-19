@@ -72,65 +72,65 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
         children: [
           CardWidget(
             iconAsset: AppImages.disciplinasBrancoSVG,
-            disciplinaName: 'Matematica',
-            primaryLabel: 'Armando',
-            secondaryLabel: 'Sala A4',
-            thirdlyLabel: '12',
-            color: AppColors.corRed,
-            onpressed: () {
-              _displayInformation(
-                context,
-                'Matematica',
-                'Armando',
-                'Sala a4',
-                '12',
-                '',
-              );
-            },
-          ),
-          CardWidget(
-            iconAsset: AppImages.disciplinasBrancoSVG,
-            disciplinaName: 'Eng.Software',
+            disciplinaName: 'Lab Engenharia de Software',
             primaryLabel: 'Kleber',
-            secondaryLabel: 'Sala a11',
-            thirdlyLabel: '8',
-            color: Colors.pink,
+            secondaryLabel: '6',
+            thirdlyLabel: 'Sala L6',
+            color: Colors.blue,
             onpressed: () {
               _displayInformation(
                 context,
-                'Eng.Software',
+                'Lab Engenharia de Software',
                 'Kleber',
-                'Sala a11',
-                '8',
+                '6',
+                'Sala L6',
                 '',
               );
             },
           ),
           CardWidget(
             iconAsset: AppImages.disciplinasBrancoSVG,
-            disciplinaName: 'Calculo',
+            disciplinaName: 'Met Pesquisa',
+            primaryLabel: 'Bene França',
+            secondaryLabel: '0',
+            thirdlyLabel: 'Sala A12',
+            color: Colors.brown,
+            onpressed: () {
+              _displayInformation(
+                context,
+                'Met Pesquisa',
+                'Bene França',
+                '0',
+                'Sala A12',
+                '',
+              );
+            },
+          ),
+          CardWidget(
+            iconAsset: AppImages.disciplinasBrancoSVG,
+            disciplinaName: 'Cálculo',
             primaryLabel: 'Cabrini',
-            secondaryLabel: 'Sala b8',
-            thirdlyLabel: '4',
-            color: Colors.blue,
+            secondaryLabel: '2',
+            thirdlyLabel: 'Sala B8',
+            color: Colors.green,
             onpressed: () {
               _displayInformation(
                 context,
                 'Calculo',
                 'Cabrini',
-                'Sala b8',
-                '4',
+                '2',
+                'Sala B8',
                 '',
               );
             },
           ),
           CardWidget(
             iconAsset: AppImages.disciplinasBrancoSVG,
-            disciplinaName: 'Estatistica',
-            primaryLabel: 'Paula Tejando',
-            secondaryLabel: 'Sala b5',
-            thirdlyLabel: '12',
-            color: Colors.green,
+            disciplinaName: 'Inglês V',
+            primaryLabel: 'Maria Elizete',
+            secondaryLabel: '0',
+            thirdlyLabel: 'Sala C10',
+            color: AppColors.corRed,
             onpressed: () {
               _displayInformation(
                 context,
@@ -144,10 +144,10 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
           ),
           CardWidget(
             iconAsset: AppImages.disciplinasBrancoSVG,
-            disciplinaName: 'Estrutura de dados',
+            disciplinaName: 'Estrutura de Dados',
             primaryLabel: 'Toni',
-            secondaryLabel: 'Sala A10',
-            thirdlyLabel: '0',
+            secondaryLabel: '4',
+            thirdlyLabel: 'Sala L8',
             color: Colors.orange,
             onpressed: () {
               _displayInformation(
@@ -239,7 +239,7 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
         builder: (context) {
           return AlertDialog(
             title: const Text(
-              'Editar Disciplina',
+              'Disciplina',
               textAlign: TextAlign.center,
             ),
             scrollable: true,
