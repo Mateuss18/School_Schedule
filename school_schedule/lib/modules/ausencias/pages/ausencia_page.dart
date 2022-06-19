@@ -16,7 +16,7 @@ class _AusenciaPageState extends State<AusenciaPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Disciplinas'),
+          title: const Text('Ausências'),
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -25,63 +25,44 @@ class _AusenciaPageState extends State<AusenciaPage> {
                 children: [
                   ExpansionTile(
                     children: [
-                      sadas('Avaliação 2', '8'),
-                      sadas('Trabalho gestao', '9')
+                      sadas('09/05/2022', '2'),
+                      sadas('06/06/2022', '2')
                     ],
                     backgroundColor: Colors.white,
                     title: CardWidget(
                       iconAsset: AppImages.ausenciaGrand,
-                      disciplinaName: 'Eng.Software',
-                      primaryLabel: 'Ausencias: 10',
-                      secondaryLabel: 'Maxímo: 40',
+                      disciplinaName: 'Lab Eng Software',
+                      primaryLabel: 'Ausências: 4',
+                      secondaryLabel: 'Maxímo: 20',
                       thirdlyLabel: '',
-                      color: AppColors.corRed,
+                      color: Colors.blue, 
                       onpressed: () {},
                     ),
                   ),
                   ExpansionTile(
                     children: [
-                      sadas('Avaliação 2', '8'),
-                      sadas('Trabalho gestao', '9')
                     ],
                     backgroundColor: Colors.white,
                     title: CardWidget(
                       iconAsset: AppImages.ausenciaGrand,
-                      disciplinaName: 'Eng.Software',
+                      disciplinaName: 'Met Pesquisa',
                       primaryLabel: 'Ausencias: 10',
-                      secondaryLabel: 'Maxímo: 40',
+                      secondaryLabel: 'Maxímo: 0',
                       thirdlyLabel: '',
-                      color: Colors.pink,
+                      color: Colors.brown,
                       onpressed: () {},
                     ),
                   ),
                   ExpansionTile(
                     children: [
-                      sadas('Avaliação 2', '8'),
-                      sadas('Trabalho gestao', '9')
+                      sadas('15/04/2022', '2'),
                     ],
                     backgroundColor: Colors.white,
                     title: CardWidget(
                       iconAsset: AppImages.ausenciaGrand,
-                      disciplinaName: 'Eng.Software',
-                      primaryLabel: 'Ausencias: 10',
-                      secondaryLabel: 'Maxímo: 40',
-                      thirdlyLabel: '',
-                      color: Colors.blue,
-                      onpressed: () {},
-                    ),
-                  ),
-                  ExpansionTile(
-                    children: [
-                      sadas('Avaliação 2', '8'),
-                      sadas('Trabalho gestao', '9')
-                    ],
-                    backgroundColor: Colors.white,
-                    title: CardWidget(
-                      iconAsset: AppImages.ausenciaGrand,
-                      disciplinaName: 'Eng.Software',
-                      primaryLabel: 'Ausencias: 10',
-                      secondaryLabel: 'Maxímo: 40',
+                      disciplinaName: 'Cálculo',
+                      primaryLabel: 'Ausencias: 2',
+                      secondaryLabel: 'Maxímo: 20',
                       thirdlyLabel: '',
                       color: Colors.green,
                       onpressed: () {},
@@ -89,17 +70,31 @@ class _AusenciaPageState extends State<AusenciaPage> {
                   ),
                   ExpansionTile(
                     children: [
-                      sadas('Avaliação 2', '8'),
-                      sadas('Trabalho gestao', '9'),
-                      sadas('Trabalho gestao', '9'),
-                      sadas('Trabalho gestao', '9'),
+                      sadas('12/04/2022', '2'),
+                      sadas('19/04/2022', '2'),
+                      sadas('06/05/2022', '2'),
+                      sadas('13/05/2022', '2'),
                     ],
                     backgroundColor: Colors.white,
                     title: CardWidget(
                       iconAsset: AppImages.ausenciaGrand,
-                      disciplinaName: 'Eng.Software',
-                      primaryLabel: 'Ausencias: 10',
-                      secondaryLabel: 'Maxímo: 40',
+                      disciplinaName: 'Ingês V',
+                      primaryLabel: 'Ausencias: 8',
+                      secondaryLabel: 'Maxímo: 10',
+                      thirdlyLabel: '',
+                      color: AppColors.corRed,
+                      onpressed: () {},
+                    ),
+                  ),
+                  ExpansionTile(
+                    children: [
+                    ],
+                    backgroundColor: Colors.white,
+                    title: CardWidget(
+                      iconAsset: AppImages.ausenciaGrand,
+                      disciplinaName: 'Estrutura de Dados',
+                      primaryLabel: 'Ausencias: 0',
+                      secondaryLabel: 'Maxímo: 20',
                       thirdlyLabel: '',
                       color: Colors.orange,
                       onpressed: () {},
@@ -120,15 +115,11 @@ class _AusenciaPageState extends State<AusenciaPage> {
           Stack(
             children: [
               Container(
-                width: 40,
-                height: 40,
+                width: 20,
+                height: 20,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(45),
-                  color: AppColors.corDarkGrey3,
-                ),
-                child: Icon(
-                  Icons.book,
-                  color: Colors.white,
+                  color: Colors.blue,
                 ),
               ),
             ],
@@ -136,7 +127,7 @@ class _AusenciaPageState extends State<AusenciaPage> {
           SizedBox(
             width: 20,
           ),
-          Text('${titulo}: ${nota}')
+          Text('${titulo}  ${nota}')
         ],
       ),
     );

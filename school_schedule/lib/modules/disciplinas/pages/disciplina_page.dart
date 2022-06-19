@@ -74,7 +74,7 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
             iconAsset: AppImages.disciplinasBrancoSVG,
             disciplinaName: 'Lab Engenharia de Software',
             primaryLabel: 'Kleber',
-            secondaryLabel: '6',
+            secondaryLabel: '20',
             thirdlyLabel: 'Sala L6',
             color: Colors.blue,
             onpressed: () {
@@ -82,7 +82,7 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
                 context,
                 'Lab Engenharia de Software',
                 'Kleber',
-                '6',
+                '20',
                 'Sala L6',
                 '',
               );
@@ -92,7 +92,7 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
             iconAsset: AppImages.disciplinasBrancoSVG,
             disciplinaName: 'Met Pesquisa',
             primaryLabel: 'Bene França',
-            secondaryLabel: '0',
+            secondaryLabel: '10',
             thirdlyLabel: 'Sala A12',
             color: Colors.brown,
             onpressed: () {
@@ -100,7 +100,7 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
                 context,
                 'Met Pesquisa',
                 'Bene França',
-                '0',
+                '10',
                 'Sala A12',
                 '',
               );
@@ -110,7 +110,7 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
             iconAsset: AppImages.disciplinasBrancoSVG,
             disciplinaName: 'Cálculo',
             primaryLabel: 'Cabrini',
-            secondaryLabel: '2',
+            secondaryLabel: '20',
             thirdlyLabel: 'Sala B8',
             color: Colors.green,
             onpressed: () {
@@ -118,7 +118,7 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
                 context,
                 'Calculo',
                 'Cabrini',
-                '2',
+                '20',
                 'Sala B8',
                 '',
               );
@@ -128,7 +128,7 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
             iconAsset: AppImages.disciplinasBrancoSVG,
             disciplinaName: 'Inglês V',
             primaryLabel: 'Maria Elizete',
-            secondaryLabel: '0',
+            secondaryLabel: '10',
             thirdlyLabel: 'Sala C10',
             color: AppColors.corRed,
             onpressed: () {
@@ -137,7 +137,7 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
                 'Estatistica',
                 'Paula Tejando',
                 'Sala b5',
-                '12',
+                '10',
                 '',
               );
             },
@@ -146,7 +146,7 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
             iconAsset: AppImages.disciplinasBrancoSVG,
             disciplinaName: 'Estrutura de Dados',
             primaryLabel: 'Toni',
-            secondaryLabel: '4',
+            secondaryLabel: '20',
             thirdlyLabel: 'Sala L8',
             color: Colors.orange,
             onpressed: () {
@@ -155,7 +155,7 @@ class _DisciplinasPageState extends State<DisciplinasPage> {
                 'Estrutura de dados',
                 'Toni',
                 'Sala A10',
-                '0',
+                '20',
                 '',
               );
             },

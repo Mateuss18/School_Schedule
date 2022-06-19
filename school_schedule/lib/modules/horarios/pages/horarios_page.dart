@@ -32,18 +32,21 @@ class _HorariosPageState extends State<HorariosPage> {
   List<Meeting> _getDataSource() {
     final List<Meeting> meetings = <Meeting>[];
     final DateTime today = DateTime.now();
-    final DateTime startTime =
-        DateTime(today.year, today.month, today.day + 1, 9, 0, 0);
 
+    final DateTime startTime =
+        DateTime(today.year, today.month, today.day, 7, 40, 0);
     final DateTime startTime2 =
-        DateTime(today.year, today.month, today.day, 10, 0, 0);
-    final DateTime endTime = startTime.add(const Duration(hours: 2));
-    final DateTime endTime2 = startTime.add(const Duration(hours: 4));
-    meetings.add(Meeting('Matematica', startTime, endTime, Colors.red, false));
+        DateTime(today.year, today.month, today.day, 11, 30, 0);
+
+    final DateTime endTime =
+        startTime.add(const Duration(hours: 3, minutes: 40));
+    final DateTime endTime2 =
+        startTime.add(const Duration(hours: 5, minutes: 20));
+
     meetings.add(Meeting(
-        'Conference', startTime2, endTime2, const Color(0xFF0F8644), false));
+        'Lab Engenharia de Software', startTime, endTime, Colors.blue, false));
     meetings.add(Meeting(
-        'Geografia', startTime2, endTime2, const Color(0xFF0F8644), false));
+        'Estrutura de Dados', startTime2, endTime2, Colors.orange, false));
     return meetings;
   }
 }

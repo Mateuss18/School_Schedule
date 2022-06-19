@@ -21,9 +21,9 @@ class _AgendaPageState extends State<AgendaPage> {
       appBar: AppBar(
           centerTitle: true,
           elevation: 0,
-          foregroundColor: Colors.black,
+          foregroundColor: Color.fromARGB(255, 255, 255, 255),
           title: const Text('Agenda'),
-          backgroundColor: Colors.white),
+          backgroundColor: AppColors.corPrimaria),
       body: Stack(children: [
         Padding(
           padding: const EdgeInsets.all(8.0),
@@ -66,10 +66,9 @@ class _AgendaPageState extends State<AgendaPage> {
                   focusedDay: DateTime.now(),
                 ),
               ),
-              card('Lab Eng.Software', 'Prova 02', '15/05/2022'),
-              card('', '', ''),
-              card('', '', ''),
-              card('', '', ''),
+              card('Apresentação da Sprint Final', ' Lab Engenharia de Software', '20/06/2022'),
+              card('Entrega trabalho no Teams', 'Inglês V', '20/06/2022'),
+              card('Relatorio desenvolvimento TCC 1', 'Met Pesquisa', '20/06/2022'),
             ],
           ),
         ),
@@ -80,6 +79,7 @@ class _AgendaPageState extends State<AgendaPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 IconButton(
+                    iconSize: 55,
                     onPressed: () {},
                     icon: SvgPicture.asset(AppImages.adicionar)),
               ],
@@ -92,7 +92,7 @@ class _AgendaPageState extends State<AgendaPage> {
 
   Widget card(String titulo, String subtitulo, String data) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
       child: Column(
         children: [
           Row(
@@ -104,7 +104,10 @@ class _AgendaPageState extends State<AgendaPage> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(titulo),
+                  Text(
+                    titulo,
+                    style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+                  ),
                   Text(subtitulo),
                   Text(
                     'Data de entrega: ${data}',
@@ -116,7 +119,7 @@ class _AgendaPageState extends State<AgendaPage> {
           ),
           Divider(
             height: 1,
-            color: Color.fromARGB(255, 74, 74, 74),
+            color: Color.fromARGB(255, 122, 122, 122),
           ),
         ],
       ),
